@@ -18,21 +18,22 @@ from netpyne import sim
 
 cfg, netParams = sim.readCmdLineArgs()
 sim.initialize(
-    simConfig = cfg,
-    netParams = netParams)                              # create network object and set cfg and net params
-sim.net.createPops()                                    # instantiate network populations
-sim.net.createCells()                                   # instantiate network cells based on defined populations
-sim.net.connectCells()                                  # create connections between cells based on params
-sim.net.addStims()                                                      # add network stimulation
-sim.setupRecording()                                    # setup variables to record for each cell (spikes, V traces, etc)
-sim.runSim()                                            # run parallel Neuron simulation  
-sim.gatherData()                                        # gather spiking data and cell info from each node
-sim.saveData()                                          # save params, cell info and sim output to file (pickle,mat,txt,etc)#
-# sim.analysis.plotData()                               # plot spike raster etc
+    simConfig = cfg, 	
+    netParams = netParams)  				# create network object and set cfg and net params
+sim.net.createPops()               			# instantiate network populations
+sim.net.createCells()              			# instantiate network cells based on defined populations
+sim.net.connectCells()            			# create connections between cells based on params
+sim.net.addStims() 							# add network stimulation
+sim.setupRecording()              			# setup variables to record for each cell (spikes, V traces, etc)
+sim.runSim()                      			# run parallel Neuron simulation  
+sim.gatherData()                  			# gather spiking data and cell info from each node
+sim.saveData()                    			# save params, cell info and sim output to file (pickle,mat,txt,etc)#
+# sim.analysis.plotData()         			# plot spike raster etc
 
 # features = ['probability','weight','delay','numConns','convergence','divergence']
 features = ['numConns']
 # groups =['pop','cell']
+groups =['pop']
 for feat in features:
     for group in groups:
         sim.analysis.plotConn(includePre=cfg.popParamLabels, includePost=cfg.popParamLabels, feature=feat, groupBy=group, figSize=(24,24), saveFig=True, orderBy='gid', graphType='matrix', fontSize=20, saveData='../data/'+cfg.simLabel[0:9]+'/'+cfg.simLabel + '_' + group + '_' + feat+ '_matrix.json')
@@ -46,4 +47,5 @@ for feat in features:
 # sim.analysis.plotRaster(include=cfg.popParamLabels, timeRange=[0,cfg.duration], orderBy='gid', orderInverse=True, labels='legend', popRates=True, lw=1, marker='.', markerSize=2, figSize=(18, 12), fontSize=9, dpi=300, saveFig=True, showFig=False)
 # sim.analysis.plotTraces(include=cfg.recordCells, overlay=True, oneFigPer='cell', figSize=(12, 4), fontSize=7, saveFig=True)
 # sim.analysis.plotTraces(include=cfg.recordCells, overlay=False, oneFigPer='trace', figSize=(18, 12), fontSize=9, saveFig=True)
+
 
