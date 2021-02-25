@@ -23,7 +23,7 @@ cfg = specs.SimConfig()
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 3.0*1e1 ## Duration of the sim, in ms  
+cfg.duration = 2.0*1e3 ## Duration of the sim, in ms  
 cfg.dt = 0.05
 cfg.seeds = {'conn': 1333, 'stim': 1333, 'loc': 1333} 
 cfg.hParams = {'celsius': 34, 'v_init': -65}  
@@ -125,10 +125,10 @@ cfg.singleCellPops = 0  # Create pops with 1 single cell (to debug)
 
 cfg.addConn = 1
 cfg.scale = 1.0 # not implemented yet - reduce size
-cfg.sizeY = 2082.0
-cfg.sizeX = 420.0 # r = 210 um and hexagonal side length = 230.9 um
-cfg.sizeZ = 420.0
-cfg.scaleDensity = 1.0 # cell number
+cfg.sizeY = 1374.349498
+cfg.sizeX = 200.0 # r = ??? um and hexagonal side length = ??? um
+cfg.sizeZ = 200.0
+cfg.scaleDensity = 0.209117591 # cell number  mouse = 6555 (rat 31346)
 # cfg.correctBorderThreshold = 150.0
 
 #------------------------------------------------------------------------------
@@ -157,9 +157,9 @@ cfg.IClamp = []
 popNames = cfg.popParamLabels
 cfg.IClampnumber = 0
 for popName in popNames:
-    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 100, 'dur': 100, 'amp': 0.12})
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 50, 'dur': 100, 'amp': 0.12})
     cfg.IClampnumber=cfg.IClampnumber+1
-    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 0, 'dur': 150, 'amp': -0.02})
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 500, 'dur': 50, 'amp': 0.05})
     cfg.IClampnumber=cfg.IClampnumber+1
 
 #------------------------------------------------------------------------------
