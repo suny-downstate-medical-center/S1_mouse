@@ -34,9 +34,9 @@ def setRunCfg(b, type='mpi_bulletin'):
 
     elif type=='mpi_direct':
         b.runCfg = {'type': 'mpi_direct',
-            'cores': 8,
+            'cores': 80,
             'script': 'init.py',
-            'mpiCommand': 'mpiexec --use-hwthread-cpus', # i7
+            'mpiCommand': 'mpiexec', # i7  --use-hwthread-cpus
             'skip': True}
 
     elif type=='hpc_slurm_gcp':
@@ -44,9 +44,9 @@ def setRunCfg(b, type='mpi_bulletin'):
             'allocation': 'default',
             'walltime': '24:00:00',
             'nodes': 1,
-            'coresPerNode': 40,
+            'coresPerNode': 80,
             'email': 'fernandodasilvaborges@gmail.com',
-            'folder': '/home/ext_fernandodasilvaborges_gmail_/S1_netpyne/sim/',
+            'folder': '/home/ext_fernandodasilvaborges_gmail_/S1_mouse/sim/',
             'script': 'init.py',
             'mpiCommand': 'mpirun',
             'skipCustom': '_raster.png'}

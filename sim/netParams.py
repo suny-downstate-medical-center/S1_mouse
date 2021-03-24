@@ -158,10 +158,14 @@ if cfg.celldiversity:
             cellRule['secLists'] = netParams.cellParams[cellMe]['secLists']                 
             cellRule['secLists']['all'][0] = 'soma' # replace 'soma_0'
             cellRule['secLists']['somatic'][0]  = 'soma' # replace 'soma_0'
+                                  
+            cellRule['secLists']['spiny'] = {}
+            cellRule['secLists']['spinyEE'] = {}
 
-            # nonSpiny = ['axon_0', 'axon_1']
-            # netParams.addCellParamsSecList(label=cellMe, secListName='spiny')  # section
-            # cellRule['secLists']['spiny'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpiny]
+            nonSpiny = ['axon_0', 'axon_1']
+            cellRule['secLists']['spiny'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpiny]
+            nonSpinyEE = ['axon_0', 'axon_1', 'soma']
+            cellRule['secLists']['spinyEE'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpinyEE]
 
             # if cfg.reducedtest:
             #     cellRule['secs'] = {}
@@ -264,7 +268,7 @@ if cfg.addConn:
                     'synMechWeightFactor': cfg.synWeightFractionII,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
                     'synsPerConn': int(synperconnNumber[pre][post]+0.5),
-                    'sec': 'all'}       
+                    'sec': 'spiny'}       
 
 ## I -> E
     for pre in Ipops:
@@ -298,7 +302,7 @@ if cfg.addConn:
                     'synMechWeightFactor': cfg.synWeightFractionIE,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
                     'synsPerConn': int(synperconnNumber[pre][post]+0.5),
-                    'sec': 'all'}     
+                    'sec': 'spiny'}     
 #------------------------------------------------------------------------------   
 ## E -> E
     for pre in Epops:
@@ -332,7 +336,7 @@ if cfg.addConn:
                     'synMechWeightFactor': cfg.synWeightFractionEE,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
                     'synsPerConn': int(synperconnNumber[pre][post]+0.5),
-                    'sec': 'all'}    
+                    'sec': 'spinyEE'}    
 
 # ## E -> I
     for pre in Epops:
@@ -366,7 +370,7 @@ if cfg.addConn:
                     'synMechWeightFactor': cfg.synWeightFractionEI,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
                     'synsPerConn': int(synperconnNumber[pre][post]+0.5),
-                    'sec': 'all'}    
+                    'sec': 'spiny'}    
 #------------------------------------------------------------------------------    
 #------------------------------------------------------------------------------
 # Current inputs (IClamp)
@@ -388,6 +392,69 @@ if cfg.addIClamp:
             'conds': {'pop': pop},
             'sec': sec, 
             'loc': loc}
+
+#------------------------------------------------------------------------------
+# NetStim inputs to simulate quantal synapses
+#------------------------------------------------------------------------------
+if cfg.addQuantalSyn:      
+    for post in Ipops + Epops:
+        for pre in Ipops:
+            if float(connNumber[pre][post]) > 0:
+                synTotal = float(connNumber[pre][post])*int(synperconnNumber[pre][post]+0.5)            
+                synperNeuron = float(synTotal/cfg.popNumber[post])
+                ratespontaneous = 0.5
+                synperNeuron = synperNeuron*ratespontaneous
+                netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 0.0}
+
+        for pre in Epops:
+            if float(connNumber[pre][post]) > 0:
+                synTotal = float(connNumber[pre][post])*int(synperconnNumber[pre][post]+0.5)
+                synperNeuron = float(synTotal/cfg.popNumber[post])
+                ratespontaneous = 0.1
+                synperNeuron = synperNeuron*ratespontaneous
+                netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 0.0}
+    #------------------------------------------------------------------------------
+    for post in Ipops:
+        for pre in Epops:
+            if float(connNumber[pre][post]) > 0:
+                netParams.stimTargetParams['quantalT_' + pre + '->' + post] = {
+                    'source': 'quantalS_' + pre + '->' + post, 
+                    'conds': {'cellType': post}, 
+                    'ynorm':[0,1], 
+                    'sec': 'soma', 
+                    'loc': 0.5, 
+                    'synMechWeightFactor': [1.0],
+                    'weight': 0.001 * gsyn[pre][post], 
+                    'delay': 0.5, 
+                    'synMech': 'AMPA'}
+
+    for post in Epops:
+        for pre in Epops:
+            if float(connNumber[pre][post]) > 0:
+                netParams.stimTargetParams['quantalT_' + pre + '->' + post] = {
+                    'source': 'quantalS_' + pre + '->' + post, 
+                    'conds': {'cellType': post}, 
+                    'ynorm':[0,1], 
+                    'sec': 'soma', 
+                    'loc': 0.5, 
+                    'synMechWeightFactor': [1.0],
+                    'weight': 0.001 * gsyn[pre][post], 
+                    'delay': 0.5, 
+                    'synMech': 'AMPA'}
+
+    for post in Ipops + Epops:
+        for pre in Ipops:
+            if float(connNumber[pre][post]) > 0:
+                netParams.stimTargetParams['quantalT_' + pre + '->' + post] = {
+                    'source': 'quantalS_' + pre + '->' + post, 
+                    'conds': {'cellType': post}, 
+                    'ynorm':[0,1], 
+                    'sec': 'soma', 
+                    'loc': 0.5, 
+                    'synMechWeightFactor': [1.0],
+                    'weight': 0.001 * gsyn[pre][post], 
+                    'delay': 0.5, 
+                    'synMech': 'GABAA'}
 #------------------------------------------------------------------------------
 # Description
 #------------------------------------------------------------------------------

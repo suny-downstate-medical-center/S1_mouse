@@ -47,8 +47,8 @@ cfg.rootFolder = os.getcwd()
 
 cfg.importCellMod = 'pkl_after' #'pkl_before' or 'BBPtemplate'
 cfg.celldiversity = True 
-cfg.poptypeNumber = 14 # max 55
-cfg.celltypeNumber = 54 # max 207
+cfg.poptypeNumber = 55 # max 55
+cfg.celltypeNumber = 207 # max 207
 #------------------------------------------------------------------------------  
 # Load 55 Morphological Names and Cell pop numbers -> L1:6 L23:10 L4:12 L5:13 L6:14
 # Load 207 Morpho-electrical Names used to import the cells from 'cell_data/' -> L1:14 L23:43 L4:46 L5:52 L6:52
@@ -94,7 +94,7 @@ cfg.recordStep = 0.1
 # Saving
 #------------------------------------------------------------------------------
 
-cfg.simLabel = 'v5_batch0'
+cfg.simLabel = 'v4_batch0'
 cfg.saveFolder = '../data/'+cfg.simLabel
 # cfg.filename =                	## Set file output name
 cfg.savePickle = False         	## Save pkl file
@@ -132,6 +132,10 @@ cfg.scaleDensity = 0.209117591 # cell number  mouse = 6555 (rat 31346)
 # cfg.correctBorderThreshold = 150.0
 
 #------------------------------------------------------------------------------
+# Quantal Synanpses
+#------------------------------------------------------------------------------
+cfg.addQuantalSyn = 1
+#------------------------------------------------------------------------------
 # Connectivity
 #------------------------------------------------------------------------------
 cfg.addConn = 1
@@ -157,9 +161,9 @@ cfg.IClamp = []
 popNames = cfg.popParamLabels
 cfg.IClampnumber = 0
 for popName in popNames:
-    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 50, 'dur': 100, 'amp': 0.12})
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 50, 'dur': 50, 'amp': 0.12})
     cfg.IClampnumber=cfg.IClampnumber+1
-    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 500, 'dur': 50, 'amp': 0.05})
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 0, 'dur': 50, 'amp': -0.02})
     cfg.IClampnumber=cfg.IClampnumber+1
 
 #------------------------------------------------------------------------------
