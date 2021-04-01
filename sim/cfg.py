@@ -23,7 +23,7 @@ cfg = specs.SimConfig()
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 2.0*1e3 ## Duration of the sim, in ms  
+cfg.duration = 5.0*1e2 ## Duration of the sim, in ms  
 cfg.dt = 0.05
 cfg.seeds = {'conn': 1333, 'stim': 1333, 'loc': 1333} 
 cfg.hParams = {'celsius': 34, 'v_init': -65}  
@@ -109,11 +109,7 @@ cfg.saveCellConns = False
 # Analysis and plotting 
 #------------------------------------------------------------------------------
 cfg.analysis['plotRaster'] = {'include': cfg.allpops, 'saveFig': True, 'showFig': False, 'orderInverse': True, 'timeRange': [0,cfg.duration], 'figSize': (18,12), 'labels': 'legend', 'popRates': True, 'fontSize':9, 'lw': 1, 'markerSize':1, 'marker': '.', 'dpi': 300} 
-<<<<<<< HEAD
 # cfg.analysis['plotConn'] = {'includePre': cfg.popParamLabels, 'includePost': cfg.popParamLabels, 'feature': 'numConns', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 20}
-=======
-cfg.analysis['plotConn'] = {'includePre': cfg.popParamLabels, 'includePost': cfg.popParamLabels, 'feature': 'numConns', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 20}
->>>>>>> e9f293da7f33277a46cf04eb912ca0a150551c40
 cfg.analysis['plotTraces'] = {'include': [(pop, 0) for pop in cfg.allpops], 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-100,40], 'saveFig': True, 'showFig': False, 'figSize':(12,4)}
 
 #------------------------------------------------------------------------------
@@ -125,7 +121,6 @@ cfg.analysis['plotTraces'] = {'include': [(pop, 0) for pop in cfg.allpops], 'one
 #------------------------------------------------------------------------------
 cfg.singleCellPops = 0  # Create pops with 1 single cell (to debug)
 
-cfg.addConn = 1
 cfg.scale = 1.0 # not implemented yet - reduce size
 cfg.sizeY = 1378.8
 cfg.sizeX = 300.0 # r = 150 um 
@@ -135,7 +130,7 @@ cfg.scaleDensity = 1.0 # Number of cells = 7859
 #------------------------------------------------------------------------------
 # Quantal Synanpses
 #------------------------------------------------------------------------------
-cfg.addQuantalSyn = 1
+cfg.addQuantalSyn = 0
 #------------------------------------------------------------------------------
 # Connectivity
 #------------------------------------------------------------------------------
@@ -156,7 +151,7 @@ cfg.IEGain = 1.0
 #------------------------------------------------------------------------------
 # Current inputs 
 #------------------------------------------------------------------------------
-cfg.addIClamp = 0
+cfg.addIClamp = 1
  
 cfg.IClamp = []
 popNames = cfg.popParamLabels
