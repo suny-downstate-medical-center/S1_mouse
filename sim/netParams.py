@@ -34,16 +34,15 @@ netParams.sizeY = cfg.sizeY # y-dimension (vertical height or cortical depth) si
 netParams.sizeZ = cfg.sizeZ # z-dimension (horizontal depth) size in um
 netParams.shape = 'cylinder' # cylindrical (column-like) volume
    
-# Layer	height (norma)	  from	  to
-# L1     0.0871	         0.0000	0.0871
-# L23    0.2000	         0.0871	0.2871
-# L4     0.1346	         0.2871	0.4217
-# L5     0.2618	         0.4217	0.6835
-# L6     0.3165	         0.6835	1.0000
-			    
-# L2     0.0691	         0.0871	0.1562
-# L3     0.1309	         0.1562	0.2871
-# All     1374.349498 um
+# Layer	     height	  from	  to
+# L1         0.089      0.000	0.089
+# L2         0.070      0.089	0.159
+# L3         0.128      0.159	0.286
+# L4         0.134      0.286	0.421
+# L5         0.263      0.421	0.684
+# L6         0.316      0.684	1.000			 
+# L23        0.198      0.089	0.286
+# All     1378.8 um
 
 cellModels = ['HH_full']
 Epops = ['L23_PC', 'L4_PC', 'L4_SS', 'L4_SP', 
@@ -54,7 +53,7 @@ for popName in cfg.popParamLabels:
     if popName not in Epops:
         Ipops.append(popName)
 
-layer = {'1':[0.0, 0.0871], '2': [0.0871,0.1562], '3': [0.1562,0.2871], '23': [0.0871,0.2871], '4':[0.2871,0.4217], '5': [0.4217,0.6835], '6': [0.6835,1.0], 
+layer = {'1':[0.0, 0.089], '2': [0.089,0.159], '3': [0.159,0.286], '23': [0.089,0.286], '4':[0.286,0.421], '5': [0.421,0.684], '6': [0.684,1.0], 
 'longS1': [2.2,2.3], 'longS2': [2.3,2.4]}  # normalized layer boundaries
 
 #------------------------------------------------------------------------------
@@ -190,9 +189,6 @@ netParams.synMechParams['AMPA'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': 1.7
 netParams.synMechParams['NMDA'] = {'mod': 'MyExp2SynNMDABB', 'tau1NMDA': 0.29, 'tau2NMDA': 43, 'e': 0}
 netParams.synMechParams['GABAA'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': 8.3, 'e': -80}
 netParams.synMechParams['GABAB'] = {'mod':'MyExp2SynBB', 'tau1': 3.5, 'tau2': 260.9, 'e': -93} 
-
-# netParams.synMechParams['AMPA'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': decay[pre][post], 'e': 0}
-# netParams.synMechParams['GABAA'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': decay[pre][post], 'e': -80}
 
 ESynMech = ['AMPA', 'NMDA']
 ISynMech = ['GABAA', 'GABAB']
@@ -401,18 +397,18 @@ if cfg.addQuantalSyn:
         for pre in Ipops:
             if float(connNumber[pre][post]) > 0:
                 synTotal = float(connNumber[pre][post])*int(synperconnNumber[pre][post]+0.5)            
-                synperNeuron = float(synTotal/cfg.popNumber[post])
+                synperNeuron = synTotal/cfg.popNumber[post]
                 ratespontaneous = 0.5
                 synperNeuron = synperNeuron*ratespontaneous
-                netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 0.0}
+                netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 1.0}
 
         for pre in Epops:
             if float(connNumber[pre][post]) > 0:
                 synTotal = float(connNumber[pre][post])*int(synperconnNumber[pre][post]+0.5)
-                synperNeuron = float(synTotal/cfg.popNumber[post])
+                synperNeuron = synTotal/cfg.popNumber[post]
                 ratespontaneous = 0.1
                 synperNeuron = synperNeuron*ratespontaneous
-                netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 0.0}
+                netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 1.0}
     #------------------------------------------------------------------------------
     for post in Ipops:
         for pre in Epops:
