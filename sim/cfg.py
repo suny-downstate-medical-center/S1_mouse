@@ -23,7 +23,7 @@ cfg = specs.SimConfig()
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 5.0*1e2 ## Duration of the sim, in ms  
+cfg.duration = 2.0*1e3 ## Duration of the sim, in ms  
 cfg.dt = 0.05
 cfg.seeds = {'conn': 1333, 'stim': 1333, 'loc': 1333} 
 cfg.hParams = {'celsius': 34, 'v_init': -65}  
@@ -130,11 +130,11 @@ cfg.scaleDensity = 1.0 # Number of cells = 7859
 #------------------------------------------------------------------------------
 # Quantal Synanpses
 #------------------------------------------------------------------------------
-cfg.addQuantalSyn = 0
+cfg.addQuantalSyn = 1
 #------------------------------------------------------------------------------
 # Connectivity
 #------------------------------------------------------------------------------
-cfg.addConn = 0
+cfg.addConn = 1
 
 cfg.synWeightFractionEE = [1.0, 1.0] # E -> E AMPA to NMDA ratio
 cfg.synWeightFractionEI = [1.0, 1.0] # E -> I AMPA to NMDA ratio
@@ -154,12 +154,12 @@ cfg.IEGain = 1.0
 cfg.addIClamp = 1
  
 cfg.IClamp = []
-popNames = cfg.popParamLabels
 cfg.IClampnumber = 0
-for popName in popNames:
-    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 50, 'dur': 50, 'amp': 0.12})
-    cfg.IClampnumber=cfg.IClampnumber+1
-    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 0, 'dur': 50, 'amp': -0.02})
+
+cfg.thalamocorticalconnections =  ['L4_PC', 'L4_SS', 'L4_SP', 'L5_TTPC1', 'L5_TTPC2', 'L5_STPC', 'L5_UTPC']
+
+for popName in cfg.thalamocorticalconnections:
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 250, 'dur': 50, 'amp': 0.1})
     cfg.IClampnumber=cfg.IClampnumber+1
 
 #------------------------------------------------------------------------------
