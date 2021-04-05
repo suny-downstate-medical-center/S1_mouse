@@ -53,7 +53,7 @@ cfg.celltypeNumber = 207 # max 207
 # Load 55 Morphological Names and Cell pop numbers -> L1:6 L23:10 L4:12 L5:13 L6:14
 # Load 207 Morpho-electrical Names used to import the cells from 'cell_data/' -> L1:14 L23:43 L4:46 L5:52 L6:52
 # Create [Morphological,Electrical] = number of cell metype in the sub-pop
-with open('S1-cells-distributions.txt') as mtype_file:
+with open('S1-cells-distributions-Mouse.txt') as mtype_file:
 	mtype_content = mtype_file.read()       
 
 cfg.popNumber = {}
@@ -94,7 +94,7 @@ cfg.recordStep = 0.1
 # Saving
 #------------------------------------------------------------------------------
 
-cfg.simLabel = 'v4_batch0'
+cfg.simLabel = 'v0_batch0'
 cfg.saveFolder = '../data/'+cfg.simLabel
 # cfg.filename =                	## Set file output name
 cfg.savePickle = False         	## Save pkl file
@@ -131,10 +131,11 @@ cfg.scaleDensity = 1.0 # Number of cells = 7859
 # Quantal Synanpses
 #------------------------------------------------------------------------------
 cfg.addQuantalSyn = 1
+cfg.rateThE = 0.1
 #------------------------------------------------------------------------------
 # Connectivity
 #------------------------------------------------------------------------------
-cfg.addConn = 1
+cfg.addConn = 0
 
 cfg.synWeightFractionEE = [1.0, 1.0] # E -> E AMPA to NMDA ratio
 cfg.synWeightFractionEI = [1.0, 1.0] # E -> I AMPA to NMDA ratio
@@ -151,7 +152,7 @@ cfg.IEGain = 1.0
 #------------------------------------------------------------------------------
 # Current inputs 
 #------------------------------------------------------------------------------
-cfg.addIClamp = 1
+cfg.addIClamp = 0
  
 cfg.IClamp = []
 cfg.IClampnumber = 0

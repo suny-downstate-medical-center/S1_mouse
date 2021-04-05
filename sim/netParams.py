@@ -62,7 +62,7 @@ layer = {'1':[0.0, 0.089], '2': [0.089,0.159], '3': [0.159,0.286], '23': [0.089,
 netParams.defaultThreshold = -10.0 # spike threshold, 10 mV is NetCon default, lower it for all cells
 netParams.defaultDelay = 0.1 # default conn delay (ms)(M1: 2.0 ms)
 netParams.propVelocity = 300.0 #  300 μm/ms (Stuart et al., 1997)(M1: 500.0um/ms)
-
+netParams.scaleConnWeight = 0.001
 #------------------------------------------------------------------------------
 # Cell parameters  # L1 70  L23 215  L4 230 L5 260  L6 260  = 1035
 #------------------------------------------------------------------------------
@@ -405,7 +405,7 @@ if cfg.addQuantalSyn:
             if float(connNumber[pre][post]) > 0:
                 synTotal = float(connNumber[pre][post])*int(synperconnNumber[pre][post]+0.5)
                 synperNeuron = synTotal/cfg.popNumber[post]
-                ratespontaneous = 0.1
+                ratespontaneous = cfg.rateThE
                 synperNeuron = synperNeuron*ratespontaneous
                 netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 1.0}
     #------------------------------------------------------------------------------
