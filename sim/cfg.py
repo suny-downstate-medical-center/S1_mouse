@@ -162,4 +162,3 @@ for popName in cfg.thalamocorticalconnections:
 ## Attempt to add Background Noise inputs 
 cfg.addNetStim = 0
 cfg.weightLong = {'S1': 0.5, 'S2': 0.5} 
-
