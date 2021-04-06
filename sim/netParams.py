@@ -62,7 +62,8 @@ layer = {'1':[0.0, 0.089], '2': [0.089,0.159], '3': [0.159,0.286], '23': [0.089,
 netParams.defaultThreshold = -10.0 # spike threshold, 10 mV is NetCon default, lower it for all cells
 netParams.defaultDelay = 0.1 # default conn delay (ms)(M1: 2.0 ms)
 netParams.propVelocity = 300.0 #  300 μm/ms (Stuart et al., 1997)(M1: 500.0um/ms)
-netParams.scaleConnWeight = 0.001
+netParams.scaleConnWeight = 0.001 # weight conversion factor (from nS to uS)
+netParams.scaleConnWeightNetStims = 0.001  # weight conversion factor (from nS to uS)
 #------------------------------------------------------------------------------
 # Cell parameters  # L1 70  L23 215  L4 230 L5 260  L6 260  = 1035
 #------------------------------------------------------------------------------
@@ -125,7 +126,6 @@ for popName in cfg.popParamLabels:
 		netParams.popParams[popName] = {'cellType': popName, 'cellModel': 'HH_full', 'ynormRange': layer[layernumber], 'numCells': int(cfg.scaleDensity*cfg.popNumber[popName]+0.5), 'diversity': cfg.celldiversity}
 
 ## Cell property rules
-# cfg.reducedtest = True
 cellnumber = 0    
 if cfg.celldiversity:
     for cellName in cfg.cellParamLabels:
@@ -166,17 +166,6 @@ if cfg.celldiversity:
             nonSpinyEE = ['axon_0', 'axon_1', 'soma']
             cellRule['secLists']['spinyEE'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpinyEE]
 
-            # if cfg.reducedtest:
-            #     cellRule['secs'] = {}
-            #     cellRule['secs']['soma'] = netParams.cellParams[cellMe]['secs']['soma']   
-                # cellRule['secs']['dend_0'] = netParams.cellParams[cellMe]['secs']['dend_0']   
-                # cellRule['secs']['dend_1'] = netParams.cellParams[cellMe]['secs']['dend_1']    
-                # cellRule['secs']['axon_0']  = netParams.cellParams[cellMe]['secs']['axon_0']   
-                # cellRule['secs']['axon_1'] = netParams.cellParams[cellMe]['secs']['axon_1']      
-                # if 'apic_1' in cellRule['secLists']['apical']:
-                #     cellRule['secs']['apic_0']  = netParams.cellParams[cellMe]['secs']['apic_0']
-                #     cellRule['secs']['apic_1']  = netParams.cellParams[cellMe]['secs']['apic_1']
-
             netParams.cellParams[cellMe] = cellRule   # add dict to list of cell params   
 
             cellnumber=cellnumber+1  	
@@ -187,20 +176,21 @@ if cfg.celldiversity:
 ### mods from M1 detailed
 netParams.synMechParams['AMPA'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': 1.74, 'e': 0}
 netParams.synMechParams['NMDA'] = {'mod': 'MyExp2SynNMDABB', 'tau1NMDA': 0.29, 'tau2NMDA': 43, 'e': 0}
+netParams.synMechParams['GABAA6'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': 6.44, 'e': -80}
 netParams.synMechParams['GABAA'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': 8.3, 'e': -80}
+netParams.synMechParams['GABAA10'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': 10.4, 'e': -80}
 netParams.synMechParams['GABAB'] = {'mod':'MyExp2SynBB', 'tau1': 3.5, 'tau2': 260.9, 'e': -93} 
 
 ESynMech = ['AMPA', 'NMDA']
 ISynMech = ['GABAA', 'GABAB']
+ISynMech6 = ['GABAA6', 'GABAB']
+ISynMech10 = ['GABAA10', 'GABAB']
 
 #------------------------------------------------------------------------------
 # Local connectivity parameters
 #------------------------------------------------------------------------------
 ## load data from conn pre-processing file
 with open('conn/conn.pkl', 'rb') as fileObj: connData = pickle.load(fileObj)
-
-pmatfull = connData['pmat']
-connNumber = connData['connNumber']
 
 lmat = connData['lmat']
 a0mat = connData['a0mat']
@@ -215,21 +205,14 @@ pmat[100] = connData['pmat100um']
 pmat[125] = connData['pmat125um']
 pmat[150] = connData['pmat150um']
 pmat[175] = connData['pmat175um']
-pmat[200] = connData['pmat200um']
-pmat[225] = connData['pmat225um']
-pmat[250] = connData['pmat250um']
-pmat[275] = connData['pmat275um']
-pmat[300] = connData['pmat300um']
-pmat[325] = connData['pmat325um']
-pmat[350] = connData['pmat350um']
-pmat[375] = connData['pmat375um']
+pmat[200] = connData['pmat200um'] #max value for d0=200
+
 synperconnNumber = connData['synperconnNumber']
-synperconnNumberStd = connData['synperconnNumberStd']
+connNumber = connData['connNumber']
 decay = connData['decay']
-decayStd  = connData['decayStd']
 gsyn = connData['gsyn']
-gsynStd = connData['gsynStd']
-connDataSource = connData['connDataSource']
+use = connData['use']
+
 #------------------------------------------------------------------------------
 if cfg.addConn:      
 # I -> I
@@ -254,11 +237,18 @@ if cfg.addConn:
                     angular = (y2 - y1)/(x2 - x1)
                     linear = y2 - x2*angular
                     prob = '%s * exp(-dist_2D/%s) * (1.0/(1+exp(-2000*(%s-dist_2D)))) if dist_2D > %s else %f * dist_2D + %f' % (a0mat[pre][post],lmat[pre][post],dfinal[pre][post],d0[pre][post],angular,linear)
+                
+                if decay[pre][post] > 10.0:
+                    synMechType =  ISynMech10
+                elif decay[pre][post] < 7.0:
+                    synMechType =  ISynMech6
+                else:
+                    synMechType =  ISynMech
 
                 netParams.connParams['II_'+pre+'_'+post] = { 
                     'preConds': {'pop': pre}, 
                     'postConds': {'pop': post},
-                    'synMech': ISynMech,
+                    'synMech': synMechType,
                     'probability': prob,
                     'weight': gsyn[pre][post] * cfg.IIGain, 
                     'synMechWeightFactor': cfg.synWeightFractionII,
@@ -289,10 +279,17 @@ if cfg.addConn:
                     linear = y2 - x2*angular
                     prob = '%s * exp(-dist_2D/%s) * (1.0/(1+exp(-2000*(%s-dist_2D)))) if dist_2D > %s else %f * dist_2D + %f' % (a0mat[pre][post],lmat[pre][post],dfinal[pre][post],d0[pre][post],angular,linear)
 
+                if decay[pre][post] > 10.0:
+                    synMechType =  ISynMech10
+                elif decay[pre][post] < 7.0:
+                    synMechType =  ISynMech6
+                else:
+                    synMechType =  ISynMech
+
                 netParams.connParams['IE_'+pre+'_'+post] = { 
                     'preConds': {'pop': pre}, 
                     'postConds': {'pop': post},
-                    'synMech': ISynMech,
+                    'synMech': synMechType,
                     'probability': prob,
                     'weight': gsyn[pre][post] * cfg.IEGain, 
                     'synMechWeightFactor': cfg.synWeightFractionIE,
@@ -397,7 +394,7 @@ if cfg.addQuantalSyn:
             if float(connNumber[pre][post]) > 0:
                 synTotal = float(connNumber[pre][post])*int(synperconnNumber[pre][post]+0.5)            
                 synperNeuron = synTotal/cfg.popNumber[post]
-                ratespontaneous = 0.5
+                ratespontaneous = cfg.rateThI
                 synperNeuron = synperNeuron*ratespontaneous
                 netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 1.0}
 
@@ -408,22 +405,9 @@ if cfg.addQuantalSyn:
                 ratespontaneous = cfg.rateThE
                 synperNeuron = synperNeuron*ratespontaneous
                 netParams.stimSourceParams['quantalS_' + pre + '->' + post] = {'type': 'NetStim', 'rate': synperNeuron, 'noise': 1.0}
-    #------------------------------------------------------------------------------
-    for post in Ipops:
-        for pre in Epops:
-            if float(connNumber[pre][post]) > 0:
-                netParams.stimTargetParams['quantalT_' + pre + '->' + post] = {
-                    'source': 'quantalS_' + pre + '->' + post, 
-                    'conds': {'cellType': post}, 
-                    'ynorm':[0,1], 
-                    'sec': 'soma', 
-                    'loc': 0.5, 
-                    'synMechWeightFactor': [1.0],
-                    'weight': 0.001 * gsyn[pre][post], 
-                    'delay': 0.5, 
-                    'synMech': 'AMPA'}
 
-    for post in Epops:
+    #------------------------------------------------------------------------------
+    for post in Ipops + Epops:
         for pre in Epops:
             if float(connNumber[pre][post]) > 0:
                 netParams.stimTargetParams['quantalT_' + pre + '->' + post] = {
@@ -433,7 +417,7 @@ if cfg.addQuantalSyn:
                     'sec': 'soma', 
                     'loc': 0.5, 
                     'synMechWeightFactor': [1.0],
-                    'weight': 0.001 * gsyn[pre][post], 
+                    'weight': gsyn[pre][post], 
                     'delay': 0.5, 
                     'synMech': 'AMPA'}
 
@@ -447,7 +431,7 @@ if cfg.addQuantalSyn:
                     'sec': 'soma', 
                     'loc': 0.5, 
                     'synMechWeightFactor': [1.0],
-                    'weight': 0.001 * gsyn[pre][post], 
+                    'weight': gsyn[pre][post], 
                     'delay': 0.5, 
                     'synMech': 'GABAA'}
                     
@@ -456,9 +440,10 @@ if cfg.addQuantalSyn:
 #------------------------------------------------------------------------------
 netParams.description = """ 
 - Code based: M1 net, 6 layers, 7 cell types - v103
-- v0 - insert cell diversity
-- v1 - insert connection rules
-- v2 - insert phys conn parameters
-- v3 - ajust conn number
-- v4 - talamic input and quantal synapses
+- v0Rat - insert cell diversity
+- v1Rat - insert connection rules
+- v2Rat - insert phys conn parameters
+- v3Rat - ajust conn number
+- v4Rat - quantal synapses
+- v0 - from v4 S1_Rat
 """

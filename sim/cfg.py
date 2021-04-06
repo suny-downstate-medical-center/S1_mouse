@@ -113,15 +113,10 @@ cfg.analysis['plotRaster'] = {'include': cfg.allpops, 'saveFig': True, 'showFig'
 cfg.analysis['plotTraces'] = {'include': [(pop, 0) for pop in cfg.allpops], 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-100,40], 'saveFig': True, 'showFig': False, 'figSize':(12,4)}
 
 #------------------------------------------------------------------------------
-# Synapses
-#------------------------------------------------------------------------------
-
-#------------------------------------------------------------------------------
 # Network 
 #------------------------------------------------------------------------------
-cfg.singleCellPops = 0  # Create pops with 1 single cell (to debug)
 
-cfg.scale = 1.0 # not implemented yet - reduce size
+cfg.scale = 1.0 # reduce size
 cfg.sizeY = 1378.8
 cfg.sizeX = 300.0 # r = 150 um 
 cfg.sizeZ = 300.0
@@ -132,6 +127,7 @@ cfg.scaleDensity = 1.0 # Number of cells = 7859
 #------------------------------------------------------------------------------
 cfg.addQuantalSyn = 1
 cfg.rateThE = 0.1
+cfg.rateThI = 0.1
 #------------------------------------------------------------------------------
 # Connectivity
 #------------------------------------------------------------------------------
@@ -145,9 +141,6 @@ cfg.EEGain = 1.0
 cfg.EIGain = 1.0
 cfg.IIGain = 1.0
 cfg.IEGain = 1.0
-#------------------------------------------------------------------------------
-# Subcellular distribution
-#------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
 # Current inputs 
@@ -168,5 +161,5 @@ for popName in cfg.thalamocorticalconnections:
 #------------------------------------------------------------------------------
 ## Attempt to add Background Noise inputs 
 cfg.addNetStim = 0
-cfg.weightLong = {'S1': 0.5, 'S2': 0.5}  # corresponds to unitary connection somatic EPSP (mV)
+cfg.weightLong = {'S1': 0.5, 'S2': 0.5} 
 
