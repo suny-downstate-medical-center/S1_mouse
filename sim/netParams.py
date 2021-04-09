@@ -1,4 +1,3 @@
-
 """
 netParams.py
 
@@ -102,17 +101,6 @@ if cfg.importCellMod == 'BBPtemplate':
                 cellArgs={'cellName': cellName[cellnumber], 'cellTemplateName': cellTemplateName})
             netParams.renameCellParamsSec(label=cellName[cellnumber], oldSec='soma_0', newSec='soma')
             os.chdir(cfg.rootFolder)
-        cellnumber = cellnumber + 1
-
-## Load cell rules previously saved using netpyne format before popParams
-if cfg.importCellMod == 'pkl_before':
-    loadCellParams = folder
-    cellName = {}
-    cellnumber = 0
-    for ruleLabel in loadCellParams:
-        cellName[cellnumber] = ruleLabel
-        netParams.loadCellParamsRule(label = ruleLabel, fileName = 'cell_data/' + ruleLabel + '/' + ruleLabel + '_cellParams.pkl')    
-        netParams.renameCellParamsSec(label=cellName[cellnumber], oldSec='soma_0', newSec='soma')
         cellnumber = cellnumber + 1
 
 #------------------------------------------------------------------------------
@@ -253,7 +241,7 @@ if cfg.addConn:
                     'weight': gsyn[pre][post] * cfg.IIGain, 
                     'synMechWeightFactor': cfg.synWeightFractionII,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                    'synsPerConn': int(synperconnNumber[pre][post]+0.5),
+                    'synsPerConn': synperconnNumber[pre][post],
                     'sec': 'spiny'}       
 
 ## I -> E
@@ -294,7 +282,7 @@ if cfg.addConn:
                     'weight': gsyn[pre][post] * cfg.IEGain, 
                     'synMechWeightFactor': cfg.synWeightFractionIE,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                    'synsPerConn': int(synperconnNumber[pre][post]+0.5),
+                    'synsPerConn': synperconnNumber[pre][post],
                     'sec': 'spiny'}     
 #------------------------------------------------------------------------------   
 ## E -> E
@@ -328,7 +316,7 @@ if cfg.addConn:
                     'weight': gsyn[pre][post] * cfg.EEGain, 
                     'synMechWeightFactor': cfg.synWeightFractionEE,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                    'synsPerConn': int(synperconnNumber[pre][post]+0.5),
+                    'synsPerConn': synperconnNumber[pre][post],
                     'sec': 'spinyEE'}    
 
 # ## E -> I
@@ -362,7 +350,7 @@ if cfg.addConn:
                     'weight': gsyn[pre][post] * cfg.EIGain, 
                     'synMechWeightFactor': cfg.synWeightFractionEI,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                    'synsPerConn': int(synperconnNumber[pre][post]+0.5),
+                    'synsPerConn': synperconnNumber[pre][post],
                     'sec': 'spiny'}    
 #------------------------------------------------------------------------------    
 # Current inputs (IClamp)
@@ -397,7 +385,7 @@ for line in metype_content.split('\n')[:-1]:
     MtypeNumberRat[mtype] = int(m)
 
 SourcesNumber = 5 # for each post Mtype - sec distrbution
-
+    
 if cfg.addQuantalSyn:      
     for post in Ipops + Epops:
         for pre in Ipops:
@@ -407,7 +395,8 @@ if cfg.addQuantalSyn:
                 ratespontaneous = cfg.rateThI
                 synperNeuron = synperNeuron*ratespontaneous
                 for qSnum in range(SourcesNumber):
-                    netParams.stimSourceParams['quantalS_' + pre + '->' + post + '_' + str(qSnum)] = {'type': 'NetStim', 'rate': synperNeuron/SourcesNumber, 'noise': 1.0}
+                    ratesdifferentiation = (0.8 + 0.4*qSnum/(SourcesNumber-1)) * synperNeuron/SourcesNumber
+                    netParams.stimSourceParams['quantalS_' + pre + '->' + post + '_' + str(qSnum)] = {'type': 'NetStim', 'rate': ratesdifferentiation, 'noise': 1.0}
 
         for pre in Epops:
             if float(connNumber[pre][post]) > 0:
@@ -416,7 +405,8 @@ if cfg.addQuantalSyn:
                 ratespontaneous = cfg.rateThE
                 synperNeuron = synperNeuron*ratespontaneous
                 for qSnum in range(SourcesNumber):
-                    netParams.stimSourceParams['quantalS_' + pre + '->' + post + '_' + str(qSnum)] = {'type': 'NetStim', 'rate': synperNeuron/SourcesNumber, 'noise': 1.0}
+                    ratesdifferentiation = (0.8 + 0.4*qSnum/(SourcesNumber-1)) * synperNeuron/SourcesNumber
+                    netParams.stimSourceParams['quantalS_' + pre + '->' + post + '_' + str(qSnum)] = {'type': 'NetStim', 'rate': ratesdifferentiation, 'noise': 1.0}
 
     #------------------------------------------------------------------------------
     for post in Epops:
