@@ -7,7 +7,6 @@ This file has sim configs as well as specification for parameterized values in n
 Contributors: salvadordura@gmail.com, fernandodasilvaborges@gmail.com
 """
 
-
 from netpyne import specs
 import pickle
 import os
@@ -125,8 +124,8 @@ cfg.scaleDensity = 1.0 # Number of cells = 7859
 # Quantal Synanpses
 #------------------------------------------------------------------------------
 cfg.addQuantalSyn = 1
-cfg.rateThE = 1.0
-cfg.rateThI = 5.0
+cfg.rateThE = 0.1
+cfg.rateThI = 5.0 * cfg.rateThE
 #------------------------------------------------------------------------------
 # Connectivity
 #------------------------------------------------------------------------------

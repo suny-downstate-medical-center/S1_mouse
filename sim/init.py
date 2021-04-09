@@ -15,7 +15,6 @@ Contributors: salvadordura@gmail.com, fernandodasilvaborges@gmail.com
 import matplotlib; matplotlib.use('Agg')  # to avoid graphics error in servers
 from netpyne import sim
 
-
 cfg, netParams = sim.readCmdLineArgs()
 sim.initialize(
     simConfig = cfg, 	

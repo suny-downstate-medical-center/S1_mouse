@@ -1,3 +1,4 @@
+
 """
 netParams.py
 
@@ -101,6 +102,17 @@ if cfg.importCellMod == 'BBPtemplate':
                 cellArgs={'cellName': cellName[cellnumber], 'cellTemplateName': cellTemplateName})
             netParams.renameCellParamsSec(label=cellName[cellnumber], oldSec='soma_0', newSec='soma')
             os.chdir(cfg.rootFolder)
+        cellnumber = cellnumber + 1
+
+## Load cell rules previously saved using netpyne format before popParams
+if cfg.importCellMod == 'pkl_before':
+    loadCellParams = folder
+    cellName = {}
+    cellnumber = 0
+    for ruleLabel in loadCellParams:
+        cellName[cellnumber] = ruleLabel
+        netParams.loadCellParamsRule(label = ruleLabel, fileName = 'cell_data/' + ruleLabel + '/' + ruleLabel + '_cellParams.pkl')    
+        netParams.renameCellParamsSec(label=cellName[cellnumber], oldSec='soma_0', newSec='soma')
         cellnumber = cellnumber + 1
 
 #------------------------------------------------------------------------------
@@ -241,7 +253,7 @@ if cfg.addConn:
                     'weight': gsyn[pre][post] * cfg.IIGain, 
                     'synMechWeightFactor': cfg.synWeightFractionII,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                    'synsPerConn': synperconnNumber[pre][post],
+                    'synsPerConn': int(synperconnNumber[pre][post]+0.5),
                     'sec': 'spiny'}       
 
 ## I -> E
@@ -282,7 +294,7 @@ if cfg.addConn:
                     'weight': gsyn[pre][post] * cfg.IEGain, 
                     'synMechWeightFactor': cfg.synWeightFractionIE,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                    'synsPerConn': synperconnNumber[pre][post],
+                    'synsPerConn': int(synperconnNumber[pre][post]+0.5),
                     'sec': 'spiny'}     
 #------------------------------------------------------------------------------   
 ## E -> E
@@ -316,9 +328,8 @@ if cfg.addConn:
                     'weight': gsyn[pre][post] * cfg.EEGain, 
                     'synMechWeightFactor': cfg.synWeightFractionEE,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                    'synsPerConn': synperconnNumber[pre][post],
+                    'synsPerConn': int(synperconnNumber[pre][post]+0.5),
                     'sec': 'spinyEE'}    
-
 # ## E -> I
     for pre in Epops:
         for post in Ipops:
@@ -350,8 +361,9 @@ if cfg.addConn:
                     'weight': gsyn[pre][post] * cfg.EIGain, 
                     'synMechWeightFactor': cfg.synWeightFractionEI,
                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                    'synsPerConn': synperconnNumber[pre][post],
+                    'synsPerConn': int(synperconnNumber[pre][post]+0.5),
                     'sec': 'spiny'}    
+                    
 #------------------------------------------------------------------------------    
 # Current inputs (IClamp)
 #------------------------------------------------------------------------------
@@ -384,8 +396,8 @@ for line in metype_content.split('\n')[:-1]:
     metype, mtype, etype, n, m = line.split()
     MtypeNumberRat[mtype] = int(m)
 
-SourcesNumber = 5 # for each post Mtype - sec distrbution
-    
+SourcesNumber = 5 # for each post Mtype - sec distribution
+   
 if cfg.addQuantalSyn:      
     for post in Ipops + Epops:
         for pre in Ipops:
@@ -453,7 +465,7 @@ if cfg.addQuantalSyn:
                         'weight': gsyn[pre][post], 
                         'delay': 0.5, 
                         'synMech': 'GABAA'}
-                    
+                  
 #------------------------------------------------------------------------------
 # Description
 #------------------------------------------------------------------------------
