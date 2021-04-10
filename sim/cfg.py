@@ -74,7 +74,24 @@ for line in mtype_content.split('\n')[:-1]:
 cfg.popParamLabels = popParam[0:cfg.poptypeNumber] # to debug
 cfg.cellParamLabels = cellParam[0:cfg.celltypeNumber] # to debug
 
-#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------  
+cfg.oneCellperMEtype = 1 # to debug
+if cfg.oneCellperMEtype:
+	cfg.popNumber = {}
+	cfg.cellNumber = {} 
+	for mtype in cfg.popParamLabels:
+		cfg.popNumber[mtype] = 0
+
+	for line in mtype_content.split('\n')[:-1]:
+		metype, mtype, etype, n, m = line.split()
+		if int(n) < 5:
+			cfg.cellNumber[metype] = int(n)
+			cfg.popNumber[mtype] = cfg.popNumber[mtype] + int(n)
+		else:
+			cfg.cellNumber[metype] = 5
+			cfg.popNumber[mtype] = cfg.popNumber[mtype] + 5
+
+#--------------------------------------------------------------------------
 # Recording 
 #------------------------------------------------------------------------------
 
@@ -108,7 +125,7 @@ cfg.saveCellConns = False
 #------------------------------------------------------------------------------
 cfg.analysis['plotRaster'] = {'include': cfg.allpops, 'saveFig': True, 'showFig': False, 'orderInverse': True, 'timeRange': [0,cfg.duration], 'figSize': (18,12), 'labels': 'legend', 'popRates': True, 'fontSize':9, 'lw': 1, 'markerSize':1, 'marker': '.', 'dpi': 300} 
 # cfg.analysis['plotConn'] = {'includePre': cfg.popParamLabels, 'includePost': cfg.popParamLabels, 'feature': 'numConns', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 20}
-cfg.analysis['plotTraces'] = {'include': [(pop, 0) for pop in cfg.allpops], 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-100,40], 'saveFig': True, 'showFig': False, 'figSize':(12,4)}
+cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-100,-10], 'saveFig': True, 'showFig': False, 'figSize':(12,4)}
 
 #------------------------------------------------------------------------------
 # Network 
@@ -121,11 +138,11 @@ cfg.sizeZ = 300.0
 cfg.scaleDensity = 1.0 # Number of cells = 7859
 
 #------------------------------------------------------------------------------
-# Quantal Synanpses
+# Spontaneous synapses + background - data from Rat
 #------------------------------------------------------------------------------
-cfg.addQuantalSyn = 1
-cfg.rateThE = 0.1
-cfg.rateThI = 5.0 * cfg.rateThE
+cfg.addStimSynS1 = 1
+cfg.rateStimE = 1.0
+cfg.rateStimI = 5.0
 #------------------------------------------------------------------------------
 # Connectivity
 #------------------------------------------------------------------------------

@@ -212,7 +212,6 @@ connNumber = connData['connNumber']
 decay = connData['decay']
 gsyn = connData['gsyn']
 use = connData['use']
-
 #------------------------------------------------------------------------------
 if cfg.addConn:      
 # I -> I
@@ -386,85 +385,68 @@ if cfg.addIClamp:
             'loc': loc}
 
 #------------------------------------------------------------------------------
-# NetStim inputs to simulate quantal synapses - data from Rat
+# NetStim inputs to simulate Spontaneous synapses + background - data from Rat
 #------------------------------------------------------------------------------
-with open('../info/anatomy/S1-cells-distributions-Rat.txt') as metype_file:
-    metype_content = metype_file.read()       
-
-MtypeNumberRat = {}
-for line in metype_content.split('\n')[:-1]:
-    metype, mtype, etype, n, m = line.split()
-    MtypeNumberRat[mtype] = int(m)
-
 SourcesNumber = 5 # for each post Mtype - sec distribution
+synperNeuronStimI = connData['synperNeuronStimI']
+synperNeuronStimE = connData['synperNeuronStimE']
+GsynStimI = connData['GsynStimI']
+GsynStimE = connData['GsynStimE']
    
-if cfg.addQuantalSyn:      
+if cfg.addStimSynS1:      
     for post in Ipops + Epops:
-        for pre in Ipops:
-            if float(connNumber[pre][post]) > 0:
-                synTotal = float(connNumber[pre][post])*synperconnNumber[pre][post]          
-                synperNeuron = synTotal/MtypeNumberRat[post]
-                ratespontaneous = cfg.rateThI
-                synperNeuron = synperNeuron*ratespontaneous
-                for qSnum in range(SourcesNumber):
-                    ratesdifferentiation = (0.8 + 0.4*qSnum/(SourcesNumber-1)) * synperNeuron/SourcesNumber
-                    netParams.stimSourceParams['quantalS_' + pre + '->' + post + '_' + str(qSnum)] = {'type': 'NetStim', 'rate': ratesdifferentiation, 'noise': 1.0}
 
-        for pre in Epops:
-            if float(connNumber[pre][post]) > 0:
-                synTotal = float(connNumber[pre][post])*synperconnNumber[pre][post]
-                synperNeuron = synTotal/MtypeNumberRat[post]
-                ratespontaneous = cfg.rateThE
-                synperNeuron = synperNeuron*ratespontaneous
-                for qSnum in range(SourcesNumber):
-                    ratesdifferentiation = (0.8 + 0.4*qSnum/(SourcesNumber-1)) * synperNeuron/SourcesNumber
-                    netParams.stimSourceParams['quantalS_' + pre + '->' + post + '_' + str(qSnum)] = {'type': 'NetStim', 'rate': ratesdifferentiation, 'noise': 1.0}
+        synperNeuron = synperNeuronStimI[post]
+        ratespontaneous = cfg.rateStimI
+        for qSnum in range(SourcesNumber):
+            ratesdifferentiation = (0.8 + 0.4*qSnum/(SourcesNumber-1)) * (synperNeuron*ratespontaneous)/SourcesNumber
+            netParams.stimSourceParams['StimSynS1_S_all_INH->' + post + '_' + str(qSnum)] = {'type': 'NetStim', 'rate': ratesdifferentiation, 'noise': 1.0}
+
+        synperNeuron = synperNeuronStimE[post]
+        ratespontaneous = cfg.rateStimE
+        for qSnum in range(SourcesNumber):
+            ratesdifferentiation = (0.8 + 0.4*qSnum/(SourcesNumber-1)) * (synperNeuron*ratespontaneous)/SourcesNumber
+            netParams.stimSourceParams['StimSynS1_S_all_EXC->' + post + '_' + str(qSnum)] = {'type': 'NetStim', 'rate': ratesdifferentiation, 'noise': 1.0}
 
     #------------------------------------------------------------------------------
     for post in Epops:
-        for pre in Epops:
-            if float(connNumber[pre][post]) > 0:
-                for qSnum in range(SourcesNumber):
-                    netParams.stimTargetParams['quantalT_' + pre + '->' + post + '_' + str(qSnum)] = {
-                        'source': 'quantalS_' + pre + '->' + post + '_' + str(qSnum), 
-                        'conds': {'cellType': post}, 
-                        'ynorm':[0,1], 
-                        'sec': 'spinyEE', 
-                        'loc': 0.5, 
-                        'synMechWeightFactor': [1.0],
-                        'weight': gsyn[pre][post], 
-                        'delay': 0.5, 
-                        'synMech': 'AMPA'}
+        for qSnum in range(SourcesNumber):
+            netParams.stimTargetParams['StimSynS1_T_all_EXC->' + post + '_' + str(qSnum)] = {
+                'source': 'StimSynS1_S_all_EXC->' + post + '_' + str(qSnum), 
+                'conds': {'cellType': post}, 
+                'ynorm':[0,1], 
+                'sec': 'spinyEE', 
+                'loc': 0.5, 
+                'synMechWeightFactor': [1.0],
+                'weight': GsynStimE[post],
+                'delay': 0.1, 
+                'synMech': 'AMPA'}
 
     for post in Ipops:
-        for pre in Epops:
-            if float(connNumber[pre][post]) > 0:
-                for qSnum in range(SourcesNumber):
-                    netParams.stimTargetParams['quantalT_' + pre + '->' + post + '_' + str(qSnum)] = {
-                        'source': 'quantalS_' + pre + '->' + post + '_' + str(qSnum), 
-                        'conds': {'cellType': post}, 
-                        'ynorm':[0,1], 
-                        'sec': 'spiny', 
-                        'loc': 0.5, 
-                        'synMechWeightFactor': [1.0],
-                        'weight': gsyn[pre][post], 
-                        'delay': 0.5, 
-                        'synMech': 'AMPA'}    
+        for qSnum in range(SourcesNumber):
+            netParams.stimTargetParams['StimSynS1_T_all_EXC->' + post + '_' + str(qSnum)] = {
+                'source': 'StimSynS1_S_all_EXC->' + post + '_' + str(qSnum), 
+                'conds': {'cellType': post}, 
+                'ynorm':[0,1], 
+                'sec': 'spiny', 
+                'loc': 0.5, 
+                'synMechWeightFactor': [1.0],
+                'weight': GsynStimE[post],
+                'delay': 0.1, 
+                'synMech': 'AMPA'}
 
-    for post in Ipops + Epops:
-        for pre in Ipops:
-            if float(connNumber[pre][post]) > 0:
-                for qSnum in range(SourcesNumber):
-                    netParams.stimTargetParams['quantalT_' + pre + '->' + post + '_' + str(qSnum)] = {
-                        'source': 'quantalS_' + pre + '->' + post + '_' + str(qSnum), 
-                        'conds': {'cellType': post}, 
-                        'ynorm':[0,1], 
-                        'sec': 'spiny', 
-                        'loc': 0.5, 
-                        'synMechWeightFactor': [1.0],
-                        'weight': gsyn[pre][post], 
-                        'delay': 0.5, 
-                        'synMech': 'GABAA'}
+    for post in Epops+Ipops:
+        for qSnum in range(SourcesNumber):
+            netParams.stimTargetParams['StimSynS1_T_all_INH->' + post + '_' + str(qSnum)] = {
+                'source': 'StimSynS1_S_all_INH->' + post + '_' + str(qSnum), 
+                'conds': {'cellType': post}, 
+                'ynorm':[0,1], 
+                'sec': 'spiny', 
+                'loc': 0.5, 
+                'synMechWeightFactor': [1.0],
+                'weight': GsynStimI[post],
+                'delay': 0.1, 
+                'synMech': 'GABAA'}
                   
 #------------------------------------------------------------------------------
 # Description
@@ -475,6 +457,6 @@ netParams.description = """
 - v1Rat - insert connection rules
 - v2Rat - insert phys conn parameters
 - v3Rat - ajust conn number
-- v4Rat - quantal synapses
+- v4Rat - StimSynS1_ synapses
 - v0 - from v4 S1_Rat
 """
