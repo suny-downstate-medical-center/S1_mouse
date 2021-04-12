@@ -75,7 +75,7 @@ cfg.popParamLabels = popParam[0:cfg.poptypeNumber] # to debug
 cfg.cellParamLabels = cellParam[0:cfg.celltypeNumber] # to debug
 
 #------------------------------------------------------------------------------  
-cfg.oneCellperMEtype = 1 # to debug
+cfg.oneCellperMEtype = 0 # to debug
 if cfg.oneCellperMEtype:
 	cfg.popNumber = {}
 	cfg.cellNumber = {} 
@@ -96,9 +96,22 @@ if cfg.oneCellperMEtype:
 #------------------------------------------------------------------------------
 
 cfg.allpops = cfg.popParamLabels
-cfg.cellsrec = 1
+cfg.cellsrec = 2
 if cfg.cellsrec == 0:  cfg.recordCells = cfg.allpops # record all cells
 elif cfg.cellsrec == 1: cfg.recordCells = [(pop,0) for pop in cfg.allpops] # record one cell of each pop
+elif cfg.cellsrec == 2: # record one cell of each cellMEtype (cfg.celldiversity = True)
+	cfg.recordCells = []
+	cellNumberLabel = 0 
+	for metype in cfg.cellParamLabels:
+		if cfg.cellNumber[metype] < 5:
+			for numberME in range(cfg.cellNumber[metype]):
+				cfg.recordCells.append((cfg.popLabel[metype],cellNumberLabel+numberME))
+		else:
+			for numberME in range(5):
+				cfg.recordCells.append((cfg.popLabel[metype],cellNumberLabel+numberME))
+		cellNumberLabel = cellNumberLabel + cfg.cellNumber[metype]
+		if cellNumberLabel == cfg.popNumber[cfg.popLabel[metype]]:
+			cellNumberLabel = 0 
 
 cfg.recordTraces = {'V_soma': {'sec':'soma', 'loc':0.5, 'var':'v'}}  ## Dict with traces to record
 cfg.recordStim = False			
@@ -125,7 +138,7 @@ cfg.saveCellConns = False
 #------------------------------------------------------------------------------
 cfg.analysis['plotRaster'] = {'include': cfg.allpops, 'saveFig': True, 'showFig': False, 'orderInverse': True, 'timeRange': [0,cfg.duration], 'figSize': (18,12), 'labels': 'legend', 'popRates': True, 'fontSize':9, 'lw': 1, 'markerSize':1, 'marker': '.', 'dpi': 300} 
 # cfg.analysis['plotConn'] = {'includePre': cfg.popParamLabels, 'includePost': cfg.popParamLabels, 'feature': 'numConns', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 20}
-cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-100,-10], 'saveFig': True, 'showFig': False, 'figSize':(12,4)}
+# cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-100,-10], 'saveFig': True, 'showFig': False, 'figSize':(12,4)}
 
 #------------------------------------------------------------------------------
 # Network 
@@ -146,7 +159,7 @@ cfg.rateStimI = 5.0
 #------------------------------------------------------------------------------
 # Connectivity
 #------------------------------------------------------------------------------
-cfg.addConn = 0
+cfg.addConn = 1
 
 cfg.synWeightFractionEE = [1.0, 1.0] # E -> E AMPA to NMDA ratio
 cfg.synWeightFractionEI = [1.0, 1.0] # E -> I AMPA to NMDA ratio

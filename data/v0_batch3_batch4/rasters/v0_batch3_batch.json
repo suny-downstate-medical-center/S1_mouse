@@ -1,0 +1,37 @@
+{
+    "batch": {
+        "batchLabel": "v0_batch3",
+        "cfgFile": "cfg.py",
+        "evolCfg": {
+            "fitnessFunc": "removed"
+        },
+        "initCfg": {},
+        "method": "grid",
+        "netParamsFile": "netParams.py",
+        "params": [
+            {
+                "label": "rateStimE",
+                "values": [
+                    1.0,
+                    2.0
+                ]
+            },
+            {
+                "label": "rateStimI",
+                "values": [
+                    3.0,
+                    6.0
+                ]
+            }
+        ],
+        "runCfg": {
+            "cores": 55,
+            "mpiCommand": "mpiexec",
+            "script": "init.py",
+            "skip": true,
+            "type": "mpi_direct"
+        },
+        "saveFolder": "../data/v0_batch3",
+        "seed": null
+    }
+}
