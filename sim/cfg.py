@@ -49,6 +49,7 @@ cfg.celldiversity = True
 cfg.poptypeNumber = 55 # max 55
 cfg.celltypeNumber = 207 # max 207
 #------------------------------------------------------------------------------  
+# S1 Cells
 # Load 55 Morphological Names and Cell pop numbers -> L1:6 L23:10 L4:12 L5:13 L6:14
 # Load 207 Morpho-electrical Names used to import the cells from 'cell_data/' -> L1:14 L23:43 L4:46 L5:52 L6:52
 # Create [Morphological,Electrical] = number of cell metype in the sub-pop
@@ -71,11 +72,27 @@ for line in mtype_content.split('\n')[:-1]:
 		popParam.append(mtype)
 	cellParam.append(metype)
 
+#------------------------------------------------------------------------------  
+# Thalamic Cells
+
+# cfg.thalamicpops = ['VPL_sTC', 'VPM_sTC', 'POm_sTC_s1']
+
+# for mtype in cfg.thalamicpops:
+# 	metype = mtype
+# 	popParam.append(mtype)
+# 	cfg.popLabel[metype] = mtype
+# 	cellParam.append(metype)
+
+# 	cfg.cellNumber[metype] = 1
+# 	cfg.popNumber[mtype] = cfg.cellNumber[metype]
+
+#------------------------------------------------------------------------------  
 cfg.popParamLabels = popParam[0:cfg.poptypeNumber] # to debug
 cfg.cellParamLabels = cellParam[0:cfg.celltypeNumber] # to debug
 
 #------------------------------------------------------------------------------  
-cfg.oneCellperMEtype = 0 # to debug
+# TO DEBUG - Create only one Cell per MEtype (~1000 S1 cells + ~10 Th cells)
+cfg.oneCellperMEtype = 0 
 if cfg.oneCellperMEtype:
 	cfg.popNumber = {}
 	cfg.cellNumber = {} 

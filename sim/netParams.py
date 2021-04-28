@@ -459,4 +459,5 @@ netParams.description = """
 - v3Rat - ajust conn number
 - v4Rat - StimSynS1_ synapses
 - v0 - from v4 S1_Rat
+- v1 - insert thalamic pops
 """
