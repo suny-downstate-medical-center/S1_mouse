@@ -10,6 +10,7 @@ Contributors: salvadordura@gmail.com, fernandodasilvaborges@gmail.com
 from netpyne import specs
 import pickle, json
 import os
+import numpy as np
 
 netParams = specs.NetParams()   # object of class NetParams to store the network parameters
 
@@ -49,12 +50,16 @@ Epops = ['L23_PC', 'L4_PC', 'L4_SS', 'L4_SP',
              'L5_TTPC1', 'L5_TTPC2', 'L5_STPC', 'L5_UTPC',
              'L6_TPC_L1', 'L6_TPC_L4', 'L6_BPC', 'L6_IPC', 'L6_UTPC']
 Ipops = []
-for popName in cfg.popParamLabels:
+for popName in cfg.S1pops:
     if popName not in Epops:
         Ipops.append(popName)
 
 layer = {'1':[0.0, 0.089], '2': [0.089,0.159], '3': [0.159,0.286], '23': [0.089,0.286], '4':[0.286,0.421], '5': [0.421,0.684], '6': [0.684,1.0], 
 'longS1': [2.2,2.3], 'longS2': [2.3,2.4]}  # normalized layer boundaries
+
+#Th pop
+ymin={'ss_RTN_o': 1688, 'ss_RTN_m': 1766, 'ss_RTN_i': 1844, 'VPL_sTC': 2000, 'VPM_sTC': 2156, 'POm_sTC_s1': 2312}
+ymax={'ss_RTN_o': 1766, 'ss_RTN_m': 1844, 'ss_RTN_i': 2000, 'VPL_sTC': 2156, 'VPM_sTC': 2312, 'POm_sTC_s1': 2624}
 
 #------------------------------------------------------------------------------
 # General connectivity parameters
@@ -64,12 +69,12 @@ netParams.defaultDelay = 0.1 # default conn delay (ms)(M1: 2.0 ms)
 netParams.propVelocity = 300.0 #  300 μm/ms (Stuart et al., 1997)(M1: 500.0um/ms)
 netParams.scaleConnWeight = 0.001 # weight conversion factor (from nS to uS)
 netParams.scaleConnWeightNetStims = 0.001  # weight conversion factor (from nS to uS)
+
 #------------------------------------------------------------------------------
 # Cell parameters  # L1 70  L23 215  L4 230 L5 260  L6 260  = 1035
 #------------------------------------------------------------------------------
 folder = os.listdir('%s/cell_data/' % (cfg.rootFolder))
 folder = sorted([d for d in folder if os.path.isdir('%s/cell_data/%s' % (cfg.rootFolder, d))])
-folder = folder[0:5*int(cfg.celltypeNumber)] ## partial load to debug
 
 ## Load cell rules using BBP template
 if cfg.importCellMod == 'BBPtemplate':
@@ -104,76 +109,109 @@ if cfg.importCellMod == 'BBPtemplate':
             os.chdir(cfg.rootFolder)
         cellnumber = cellnumber + 1
 
-## Load cell rules previously saved using netpyne format before popParams
-if cfg.importCellMod == 'pkl_before':
-    loadCellParams = folder
-    cellName = {}
-    cellnumber = 0
-    for ruleLabel in loadCellParams:
-        cellName[cellnumber] = ruleLabel
-        netParams.loadCellParamsRule(label = ruleLabel, fileName = 'cell_data/' + ruleLabel + '/' + ruleLabel + '_cellParams.pkl')    
-        netParams.renameCellParamsSec(label=cellName[cellnumber], oldSec='soma_0', newSec='soma')
-        cellnumber = cellnumber + 1
-
 #------------------------------------------------------------------------------
 # Population parameters
 #------------------------------------------------------------------------------
-for popName in cfg.popParamLabels:
+## S1
+for popName in cfg.S1pops:
 	layernumber = popName[1:2]
 	if layernumber == '2':
-		netParams.popParams[popName] = {'cellType': popName, 'cellModel': 'HH_full', 'ynormRange': layer['23'], 'numCells': int(cfg.scaleDensity*cfg.popNumber[popName]+0.5), 'diversity': cfg.celldiversity}
+		netParams.popParams[popName] = {'cellType': popName, 'cellModel': 'HH_full', 'ynormRange': layer['23'], 
+                                        'numCells': int(np.ceil(cfg.scaleDensity*cfg.popNumber[popName])), 'diversity': True}
 	else:
-		netParams.popParams[popName] = {'cellType': popName, 'cellModel': 'HH_full', 'ynormRange': layer[layernumber], 'numCells': int(cfg.scaleDensity*cfg.popNumber[popName]+0.5), 'diversity': cfg.celldiversity}
+		netParams.popParams[popName] = {'cellType': popName, 'cellModel': 'HH_full', 'ynormRange': layer[layernumber], 
+                                        'numCells': int(np.ceil(cfg.scaleDensity*cfg.popNumber[popName])), 'diversity': True}
 
-## Cell property rules
+## THALAMIC POPULATIONS (from prev model)
+for popName in cfg.thalamicpops:
+    if 'RTN' in popName: # inhibitory - RTN
+        ThcellType = 'sRE_cell'
+    else: # excitatory
+        ThcellType = 'sTC_cell'    
+    netParams.popParams[popName] = {'cellType': ThcellType, 'cellModel': 'HH_full', 'yRange': [ymin[popName], ymax[popName]],
+                                        'numCells':  int(np.ceil(cfg.scaleDensity*cfg.popNumber[popName])), 'diversity': False}
+
+## S1 cell property rules
 cellnumber = 0    
-if cfg.celldiversity:
-    for cellName in cfg.cellParamLabels:
-        
-        if cfg.cellNumber[cellName] < 5:
-            morphoNumbers = cfg.cellNumber[cellName]
-        else:
-            morphoNumbers = 5
-        
-        popName = cfg.popLabel[cellName]
-        cellFraction = 1.0*cfg.cellNumber[cellName]/(morphoNumbers*cfg.popNumber[popName])
-        
-        if cfg.verbose:
-            print(popName,cellName,cfg.cellNumber[cellName],cfg.popNumber[popName],morphoNumbers*cellFraction)
-            print('diversityFraction =',morphoNumbers*cellFraction)
+for cellName in cfg.S1cells:
+    
+    if cfg.cellNumber[cellName] < 5:
+        morphoNumbers = cfg.cellNumber[cellName]
+    else:
+        morphoNumbers = 5
+    
+    popName = cfg.popLabel[cellName]
+    cellFraction = 1.0*cfg.cellNumber[cellName]/(morphoNumbers*cfg.popNumber[popName])
+    
+    for morphoNumber in range(morphoNumbers):
+        cellMe = cellName + '_' + str(morphoNumber+1)
+        ## Load cell rules previously saved using netpyne format
+        if cfg.importCellMod == 'pkl':
+            netParams.loadCellParamsRule(label = cellMe, fileName = 'cell_data/' + cellMe + '/' + cellMe + '_cellParams.pkl')    
+            netParams.renameCellParamsSec(label = cellMe, oldSec = 'soma_0', newSec = 'soma')
 
-        for morphoNumber in range(morphoNumbers):
-            cellMe = cellName + '_' + str(morphoNumber+1)
-            ## Load cell rules previously saved using netpyne format
-            if cfg.importCellMod == 'pkl_after':
-                netParams.loadCellParamsRule(label = cellMe, fileName = 'cell_data/' + cellMe + '/' + cellMe + '_cellParams.pkl')    
-                netParams.renameCellParamsSec(label = cellMe, oldSec = 'soma_0', newSec = 'soma')
+        cellRule = {'conds': {'cellType': popName}, 'diversityFraction': cellFraction, 'secs': {}}  # cell rule dict
+        cellRule['secs'] = netParams.cellParams[cellMe]['secs']     
+        cellRule['conds'] = netParams.cellParams[cellMe]['conds']    
+        cellRule['conds']['cellType'] = popName
+        cellRule['globals'] = netParams.cellParams[cellMe]['globals']       
+        cellRule['secLists'] = netParams.cellParams[cellMe]['secLists']                 
+        cellRule['secLists']['all'][0] = 'soma' # replace 'soma_0'
+        cellRule['secLists']['somatic'][0]  = 'soma' # replace 'soma_0'
+                              
+        cellRule['secLists']['spiny'] = {}
+        cellRule['secLists']['spinyEE'] = {}
 
-            cellRule = {'conds': {'cellType': popName}, 'diversityFraction': cellFraction, 'secs': {}}  # cell rule dict
-            cellRule['secs'] = netParams.cellParams[cellMe]['secs']     
-            cellRule['conds'] = netParams.cellParams[cellMe]['conds']    
-            cellRule['conds']['cellType'] = popName
-            cellRule['globals'] = netParams.cellParams[cellMe]['globals']       
-            cellRule['secLists'] = netParams.cellParams[cellMe]['secLists']                 
-            cellRule['secLists']['all'][0] = 'soma' # replace 'soma_0'
-            cellRule['secLists']['somatic'][0]  = 'soma' # replace 'soma_0'
-                                  
-            cellRule['secLists']['spiny'] = {}
-            cellRule['secLists']['spinyEE'] = {}
+        nonSpiny = ['axon_0', 'axon_1']
+        cellRule['secLists']['spiny'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpiny]
+        nonSpinyEE = ['axon_0', 'axon_1', 'soma']
+        cellRule['secLists']['spinyEE'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpinyEE]
 
-            nonSpiny = ['axon_0', 'axon_1']
-            cellRule['secLists']['spiny'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpiny]
-            nonSpinyEE = ['axon_0', 'axon_1', 'soma']
-            cellRule['secLists']['spinyEE'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpinyEE]
-
-            netParams.cellParams[cellMe] = cellRule   # add dict to list of cell params   
-
-            cellnumber=cellnumber+1  	
+        #-----------------------------------------------------------------------------------#
+        cfg.reducedtest = True    
+        if cfg.reducedtest:
+            cellRule['secs'] = {}
+            cellRule['secs']['soma'] = netParams.cellParams[cellMe]['secs']['soma']
+            # cellRule['secs']['dend_0'] = netParams.cellParams[cellMe]['secs']['dend_0']
+            # cellRule['secs']['axon_0']  = netParams.cellParams[cellMe]['secs']['axon_0']
+            # cellRule['secs']['axon_1'] = netParams.cellParams[cellMe]['secs']['axon_1']
             
+            # if 'apic_0' in cellRule['secLists']['apical']:
+            #     cellRule['secs']['apic_0']  = netParams.cellParams[cellMe]['secs']['apic_0']
+            #     cellRule['secLists']['spiny'] = ['soma','dend_0','apic_0']
+            #     cellRule['secLists']['spinyEE'] = ['dend_0','apic_0']
+            #     cellRule['secLists']['all'] = ['soma','dend_0','apic_0','axon_0', 'axon_1']
+            #     cellRule['secLists']['apical'] = ['apic_0']
+            #     cellRule['secLists']['basal'] = ['dend_0']
+            # else:
+            #     cellRule['secLists']['spiny'] = ['soma','dend_0']
+            #     cellRule['secLists']['spinyEE'] = ['dend_0']
+            #     cellRule['secLists']['all'] = ['soma','dend_0','axon_0', 'axon_1']
+            #     cellRule['secLists']['basal'] = ['dend_0']    
+
+            # only soma to test the net
+            cellRule['secLists']['spiny'] = ['soma']
+            cellRule['secLists']['spinyEE'] = ['soma']
+            cellRule['secLists']['all'] = ['soma']
+            cellRule['secLists']['basal'] = ['soma']    
+        #-----------------------------------------------------------------------------------#
+        netParams.cellParams[cellMe] = cellRule   # add dict to list of cell params   
+        cellnumber=cellnumber+1        
+
+## Th cell property rules
+# JSON FILES FROM A1 WITH UPDATED DYNAMICS
+#     # # --- VL - Exc --- #
+netParams.loadCellParamsRule(label='sTC_cell', fileName='cells/sTC_jv_00.json')  # Load cellParams for each of the above cell subtype
+netParams.cellParams['sTC_cell']['conds']={}
+
+#     # --- RTN - Inh --- #
+netParams.loadCellParamsRule(label='sRE_cell', fileName='cells/sRE_jv_00.json')  # Load cellParams for each of the above cell subtype
+netParams.cellParams['sRE_cell']['conds']={}
+
 #------------------------------------------------------------------------------
-# Synaptic mechanism parameters
+# Synaptic mechanism parameters  - mods from M1 detailed
 #------------------------------------------------------------------------------
-### mods from M1 detailed
+## S1
 netParams.synMechParams['AMPA'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': 1.74, 'e': 0}
 netParams.synMechParams['NMDA'] = {'mod': 'MyExp2SynNMDABB', 'tau1NMDA': 0.29, 'tau2NMDA': 43, 'e': 0}
 netParams.synMechParams['GABAA6'] = {'mod':'MyExp2SynBB', 'tau1': 0.2, 'tau2': 6.44, 'e': -80}
@@ -186,10 +224,127 @@ ISynMech = ['GABAA', 'GABAB']
 ISynMech6 = ['GABAA6', 'GABAB']
 ISynMech10 = ['GABAA10', 'GABAB']
 
+## Th
+netParams.synMechParams['NMDA_Th']             = {'mod': 'MyExp2SynNMDABB',    'tau1NMDA': 15, 'tau2NMDA': 150,                'e': 0}
+netParams.synMechParams['AMPA_Th']             = {'mod': 'MyExp2SynBB',        'tau1': 0.05,   'tau2': 5.3, 'e': 0}
+netParams.synMechParams['GABAB_Th']            = {'mod': 'MyExp2SynBB',        'tau1': 3.5,    'tau2': 260.9,                  'e': -93} 
+netParams.synMechParams['GABAA_Th']            = {'mod': 'MyExp2SynBB',        'tau1': 0.07,   'tau2': 18.2,                   'e': -80}
+netParams.synMechParams['GABAASlow_Th']        = {'mod': 'MyExp2SynBB',        'tau1': 2,      'tau2': 100,                    'e': -80}
+netParams.synMechParams['GABAASlowSlow_Th']    = {'mod': 'MyExp2SynBB',        'tau1': 200,    'tau2': 400,                    'e': -80}
+
+ESynMech_Th    = ['AMPA_Th', 'NMDA_Th']
+SOMESynMech_Th = ['GABAASlow_Th','GABAB_Th']
+SOMISynMech_Th = ['GABAASlow_Th']
+PVSynMech_Th   = ['GABAA_Th']
+NGFSynMech_Th  = ['GABAA_Th', 'GABAB_Th']
+
+
 #------------------------------------------------------------------------------
-# Local connectivity parameters
+# Th connectivity parameters
 #------------------------------------------------------------------------------
-## load data from conn pre-processing file
+if cfg.connectTh:
+
+    ## load data from conn pre-processing file
+    with open('conn/conn_Th.pkl', 'rb') as fileObj: connData = pickle.load(fileObj)
+    pmat = connData['pmat']
+    lmat = connData['lmat']
+    wmat = connData['wmat']
+    cmat = connData['cmat']
+    
+    pops_TC     = ['VPL_sTC','VPM_sTC', 'POm_sTC_s1']
+    pops_RTN    = ['ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i']
+    pops_FO     = ['VPL_sTC','VPM_sTC']
+    pops_HO     = ['POm_sTC_s1']
+
+    # Intrathalamic 
+    if cfg.connect_RTN_RTN:        
+        for pre in pops_RTN:
+            for post in pops_RTN:
+                if pre in pmat and post in pmat[pre]:
+
+                    pmat[pre][post]=cfg.connProb_RTN_RTN
+                    wmat[pre][post]=cfg.connWeight_RTN_RTN
+
+                    l = cfg.connLenghtConst
+                    syn = PVSynMech_Th # only GABA A
+                    synWeightFactor = [1.0]
+                    netParams.connParams['thal_'+pre+'_'+post] = { 
+                                    'preConds': {'pop': pre}, 
+                                    'postConds': {'pop': post},
+                                    'synMech': syn,
+                                    'probability':' %f * exp(-dist_3D/%f)*(dist_2D<%f)*(dist_y<(%f/%f))' % (pmat[pre][post], l, cmat[pre][post], cmat[pre][post],cfg.yConnFactor),
+                                    'weight': wmat[pre][post], 
+                                    'synMechWeightFactor': synWeightFactor,
+                                    'delay': 'defaultDelay+dist_3D/propVelocity',
+                                    'synsPerConn': 10,
+                                    'sec': 'soma'}
+
+    if cfg.connect_TC_RTN:
+        for pre in pops_TC:
+            for post in pops_RTN:
+                if pre in pmat and post in pmat[pre]:
+
+                    pmat[pre][post]=cfg.connProb_TC_RTN
+                    wmat[pre][post]=cfg.connWeight_TC_RTN
+
+                    l = cfg.connLenghtConst
+                    y_thresh    = cmat[pre][post]/5
+
+                    syn = ['AMPA_Th'] # AMPA
+                    synWeightFactor = [1.0]
+
+                    if pre in pops_HO:
+                        conn_method = 'divergence'
+                        prob_rule = cfg.divergenceHO
+                    else: # topographycal connectivity
+                        conn_method = 'probability'
+                        prob_rule = '%f * exp(-dist_2D/%f)*(dist_2D<%f)*(abs(((((pre_y-%f)*(%f-%f))/(%f-%f))+%f)-post_y)<%f)' % (pmat[pre][post], l, cmat[pre][post],ymin[pre],ymax[post],ymin[post],ymax[pre],ymin[pre],ymin[post],y_thresh)
+
+                    netParams.connParams['thal_'+pre+'_'+post] = { 
+                                'preConds': {'pop': pre}, 
+                                'postConds': {'pop': post},
+                                'synMech': syn,
+                                conn_method:  prob_rule,
+                                'weight': wmat[pre][post], 
+                                'synMechWeightFactor': synWeightFactor,
+                                'delay': 'defaultDelay+dist_3D/propVelocity',
+                                'synsPerConn': 10,
+                                'sec': 'soma'}
+
+    if cfg.connect_RTN_TC:
+        for pre in pops_RTN:
+            for post in pops_TC:
+                if pre in pmat and post in pmat[pre]:
+
+                    pmat[pre][post]=cfg.connProb_RTN_TC
+                    wmat[pre][post]=cfg.connWeight_RTN_TC
+
+                    l = cfg.connLenghtConst
+                    y_thresh    = cmat[pre][post]/5
+
+                    syn = NGFSynMech_Th    # GABA A and GABA B
+                    synWeightFactor = [0.6,0.4]
+                            
+                    if post in pops_HO:
+                        conn_method = 'divergence'
+                        prob_rule = cfg.divergenceHO
+                    else: # topographycal connectivity
+                        conn_method = 'probability'
+                        prob_rule = '%f * exp(-dist_2D/%f)*(dist_2D<%f)*(abs(((((pre_y-%f)*(%f-%f))/(%f-%f))+%f)-post_y)<%f)' % (pmat[pre][post], l, cmat[pre][post],ymin[pre],ymax[post],ymin[post],ymax[pre],ymin[pre],ymin[post],y_thresh)
+
+                    netParams.connParams['thal_'+pre+'_'+post] = { 
+                                'preConds': {'pop': pre}, 
+                                'postConds': {'pop': post},
+                                'synMech': syn,
+                                conn_method:  prob_rule,
+                                'weight': wmat[pre][post], 
+                                'synMechWeightFactor': synWeightFactor,
+                                'delay': 'defaultDelay+dist_3D/propVelocity',
+                                'synsPerConn': 10,
+                                'sec': 'soma'}
+
+
+## load data from S1 conn pre-processing file 
 with open('conn/conn.pkl', 'rb') as fileObj: connData = pickle.load(fileObj)
 
 lmat = connData['lmat']
@@ -212,6 +367,11 @@ connNumber = connData['connNumber']
 decay = connData['decay']
 gsyn = connData['gsyn']
 use = connData['use']
+
+# print(netParams.connParams)
+
+#------------------------------------------------------------------------------
+# S1 Local connectivity parameters 
 #------------------------------------------------------------------------------
 if cfg.addConn:      
 # I -> I

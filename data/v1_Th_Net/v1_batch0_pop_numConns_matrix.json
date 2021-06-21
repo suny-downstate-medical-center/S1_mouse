@@ -1,0 +1,73 @@
+{
+    "connMatrix": [
+        [
+            3383.0,
+            0.0,
+            0.0,
+            23752.0,
+            0.0,
+            0.0
+        ],
+        [
+            0.0,
+            6198.0,
+            0.0,
+            0.0,
+            26898.0,
+            0.0
+        ],
+        [
+            0.0,
+            0.0,
+            8717.0,
+            0.0,
+            0.0,
+            15300.0
+        ],
+        [
+            3320.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        [
+            0.0,
+            12278.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+        ],
+        [
+            0.0,
+            0.0,
+            6850.0,
+            0.0,
+            0.0,
+            0.0
+        ]
+    ],
+    "feature": "numConns",
+    "groupBy": "pop",
+    "includePost": [
+        "ss_RTN_o",
+        "ss_RTN_m",
+        "ss_RTN_i",
+        "VPL_sTC",
+        "VPM_sTC",
+        "POm_sTC_s1"
+    ],
+    "includePre": [
+        "ss_RTN_o",
+        "ss_RTN_m",
+        "ss_RTN_i",
+        "VPL_sTC",
+        "VPM_sTC",
+        "POm_sTC_s1"
+    ],
+    "saveData": "../data/v1_batch0/v1_batch0_pop_numConns_matrix.json",
+    "saveFig": true,
+    "showFig": true
+}

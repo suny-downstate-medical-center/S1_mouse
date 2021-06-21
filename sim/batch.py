@@ -15,9 +15,9 @@ import numpy as np
 def custom():
     params = specs.ODict()
     
-    # params[('seeds', 'conn')] =  [2203, 2204] 
-    params[('rateStimE')] = [6.0]
-    params[('rateStimI')] = [9.0]
+    params[('seeds', 'conn')] =  [1234] #, , 4321 , 1111, 2222
+    # params[('rateStimE')] = [6.0]
+    # params[('rateStimI')] = [9.0]
 
     b = Batch(params=params, netParamsFile='netParams.py', cfgFile='cfg.py')
 
@@ -34,20 +34,20 @@ def setRunCfg(b, type='mpi_bulletin'):
 
     elif type=='mpi_direct':
         b.runCfg = {'type': 'mpi_direct',
-            'cores': 8,
+            'cores': 4,
             'script': 'init.py',
-            'mpiCommand': 'mpiexec --use-hwthread-cpus', # i7  --use-hwthread-cpus
+            'mpiCommand': 'mpiexec', # i7         --use-hwthread-cpus
             'skip': True}
 
     elif type=='hpc_slurm_gcp':
-        b.runCfg = {'type': 'hpc_slurm',
+        b.runCfg = {'type': 'hpc_slurm', 
             'allocation': 'default',
-            'walltime': '24:00:00',
+            'walltime': '24:00:00', 
             'nodes': 1,
-            'coresPerNode': 80,
-            'email': 'fernandodasilvaborges@gmail.com',
-            'folder': '/home/ext_fernandodasilvaborges_gmail_/S1_mouse/sim/',
-            'script': 'init.py',
+            'coresPerNode': 96,
+            'email': 'salvadordura@gmail.com',
+            'folder': '/home/ext_salvadordura_gmail_com/m1/sim/', 
+            'script': 'init.py', 
             'mpiCommand': 'mpirun',
             'skipCustom': '_raster.png'}
 
@@ -57,7 +57,7 @@ def setRunCfg(b, type='mpi_bulletin'):
 if __name__ == '__main__': 
     b = custom() #
 
-    b.batchLabel = 'v1_batch0'  
+    b.batchLabel = 'v1_batch3'  
     b.saveFolder = '../data/'+b.batchLabel
     b.method = 'grid'
     setRunCfg(b, 'mpi_direct')     # setRunCfg(b, 'mpi_bulletin')

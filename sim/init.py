@@ -33,9 +33,8 @@ sim.analysis.plotData()         			# plot spike raster etc
 #sim.analysis.plotRaster(include=cfg.popParamLabels, timeRange=[0,cfg.duration], orderBy='gid', orderInverse=True, labels='legend', popRates=True, lw=1, marker='.', markerSize=2, figSize=(18, 12), fontSize=9, dpi=300, saveFig=True, showFig=False)
 #sim.analysis.plotTraces(include=cfg.recordCells, overlay=True, oneFigPer='cell', figSize=(12, 4), fontSize=7, saveFig=True)
 #sim.analysis.plotTraces(include=cfg.recordCells, overlay=False, oneFigPer='trace', figSize=(18, 12), fontSize=9, saveFig=True)
-#features = ['numConns']
-#groups =['pop']
-#for feat in features:
+# features = ['numConns']
+# groups =['pop']
+# for feat in features:
 #    for group in groups:
-#        sim.analysis.plotConn(includePre=cfg.popParamLabels, includePost=cfg.popParamLabels, feature=feat, groupBy=group, figSize=(24,24), saveFig=True, orderBy='gid', graphType='matrix', fontSize=20, saveData='../data/'+cfg.simLabel[0:9]+'/'+cfg.simLabel + '_' + group + '_' + feat+ '_matrix.json')
-#
+#        sim.analysis.plotConn(includePre=cfg.popParamLabels, includePost=cfg.popParamLabels, feature=feat, groupBy=group, figSize=(24,24), saveFig=True, orderBy='gid', graphType='matrix', fontSize=18, saveData='../data/'+cfg.simLabel[0:9]+'/'+cfg.simLabel + '_' + group + '_' + feat+ '_matrix.json')
