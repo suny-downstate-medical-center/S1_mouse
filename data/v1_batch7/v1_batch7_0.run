@@ -1,0 +1,153 @@
+numprocs=4
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch7/v1_batch7_0_cfg.json ... 
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch7/v1_batch7_0_cfg.json ... 
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch7/v1_batch7_0_cfg.json ... 
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch7/v1_batch7_0_cfg.json ... 
+Loading simConfig...
+Importing netParams from ../data/v1_batch7/v1_batch7_netParams.py
+Importing netParams from ../data/v1_batch7/v1_batch7_netParams.py
+Importing netParams from ../data/v1_batch7/v1_batch7_netParams.py
+
+Start time:  2021-06-22 21:50:32.929921
+Importing netParams from ../data/v1_batch7/v1_batch7_netParams.py
+
+Creating network of 61 cell populations on 4 hosts...
+  Number of cells on node 2: 2892 
+  Number of cells on node 3: 2892 
+  Number of cells on node 0: 2892 
+  Number of cells on node 1: 2892 
+  Done; cell creation time = 11.85 s.
+Making connections...
+  Number of connections on node 3: 22009 
+  Number of synaptic contacts on node 3: 327604 
+  Number of connections on node 2: 22177 
+  Number of synaptic contacts on node 2: 332352 
+  Number of connections on node 1: 21539 
+  Number of synaptic contacts on node 1: 324200 
+  Number of connections on node 0: 21895 
+  Number of synaptic contacts on node 0: 330872 
+  Done; cell connection time = 180.01 s.
+Adding stims...
+  Number of stims on node 3: 545 
+  Number of stims on node 2: 545 
+  Number of stims on node 0: 545 
+  Number of stims on node 1: 545 
+  Done; cell stims creation time = 0.38 s.
+Recording 15 traces of 1 types on node 3
+Recording 13 traces of 1 types on node 2
+Recording 15 traces of 1 types on node 1
+Recording 17 traces of 1 types on node 0
+0.0s
+
+Running simulation for 200.0 ms...
+0.1s
+0.2s
+  Done; run time = 365.49 s; real-time ratio: 0.00.
+
+Gathering data...
+  Done; gather time = 21.77 s.
+
+Analyzing...
+Plotting connectivity matrix...
+Plotting connectivity matrix...
+  There was an exception in plotConn(): 
+    'Network' object has no attribute 'allCells' 
+    (<class 'AttributeError'>, AttributeError("'Network' object has no attribute 'allCells'"), <traceback object at 0x7fb800719910>)
+  There was an exception in plotConn(): 
+    'Network' object has no attribute 'allCells' 
+    (<class 'AttributeError'>, AttributeError("'Network' object has no attribute 'allCells'"), <traceback object at 0x7f4e04866af0>)
+Plotting connectivity matrix...
+  There was an exception in plotConn(): 
+    'Network' object has no attribute 'allCells' 
+    (<class 'AttributeError'>, AttributeError("'Network' object has no attribute 'allCells'"), <traceback object at 0x7f22dedcac30>)
+  Cells: 11568
+  Connections: 87620 (7.57 per cell)
+  Synaptic contacts: 1315028 (113.68 per cell)
+  Spikes: 41646 (18.00 Hz)
+  Simulated time: 0.2 s; 4 workers
+  Run time: 365.49 s
+   L1_DAC : 0.000 Hz
+   L1_DLAC : 0.000 Hz
+   L1_HAC : 0.000 Hz
+   L1_NGC-DA : 0.000 Hz
+   L1_NGC-SA : 0.000 Hz
+   L1_SLAC : 0.000 Hz
+   L23_BP : 0.000 Hz
+   L23_BTC : 0.000 Hz
+   L23_ChC : 0.000 Hz
+   L23_DBC : 0.000 Hz
+   L23_LBC : 0.000 Hz
+   L23_MC : 0.000 Hz
+   L23_NBC : 0.000 Hz
+   L23_NGC : 0.000 Hz
+   L23_PC : 21.178 Hz
+   L23_SBC : 0.000 Hz
+   L4_BP : 18.333 Hz
+   L4_BTC : 23.125 Hz
+   L4_ChC : 21.667 Hz
+   L4_DBC : 14.091 Hz
+   L4_LBC : 22.568 Hz
+   L4_MC : 22.794 Hz
+   L4_NBC : 27.857 Hz
+   L4_NGC : 43.750 Hz
+   L4_PC : 15.802 Hz
+   L4_SBC : 29.167 Hz
+   L4_SP : 19.031 Hz
+   L4_SS : 14.708 Hz
+   L5_BP : 38.750 Hz
+   L5_BTC : 37.273 Hz
+   L5_ChC : 38.000 Hz
+   L5_DBC : 28.542 Hz
+   L5_LBC : 29.655 Hz
+   L5_MC : 30.093 Hz
+   L5_NBC : 33.393 Hz
+   L5_NGC : 43.750 Hz
+   L5_SBC : 43.333 Hz
+   L5_STPC : 30.904 Hz
+   L5_TTPC1 : 27.839 Hz
+   L5_TTPC2 : 26.166 Hz
+   L5_UTPC : 34.096 Hz
+   L6_BPC : 18.060 Hz
+   L6_BP : 0.000 Hz
+   L6_BTC : 0.000 Hz
+   L6_ChC : 0.000 Hz
+   L6_DBC : 0.000 Hz
+   L6_IPC : 18.090 Hz
+   L6_LBC : 0.000 Hz
+   L6_MC : 0.000 Hz
+   L6_NBC : 0.000 Hz
+   L6_NGC : 0.000 Hz
+   L6_SBC : 0.000 Hz
+   L6_TPC_L1 : 20.535 Hz
+   L6_TPC_L4 : 20.321 Hz
+   L6_UTPC : 18.630 Hz
+   ss_RTN_o : 8.770 Hz
+   ss_RTN_m : 14.961 Hz
+   ss_RTN_i : 8.307 Hz
+   VPL_sTC : 20.404 Hz
+   VPM_sTC : 17.580 Hz
+   POm_sTC_s1 : 21.664 Hz
+Saving output as ../data/v1_batch7/v1_batch7_0.json  ... 
+Finished saving!
+  Done; saving time = 0.06 s.
+Plotting connectivity matrix...
+Plotting raster...
+Plotting recorded cell traces ... cell
+  Done; plotting time = 2396.07 s
+
+Total time = 2979.34 s
+
+End time:  2021-06-22 22:40:12.271275
+Plotting connectivity matrix...
+Saving figure data as ../data/v1_batch7/v1_batch7_0_pop_numConns_matrix.json ... 

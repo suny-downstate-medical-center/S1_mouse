@@ -22,7 +22,7 @@ cfg = specs.SimConfig()
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 1.0*1e4 ## Duration of the sim, in ms  
+cfg.duration = 2.0*1e2 ## Duration of the sim, in ms  
 cfg.dt = 0.025
 cfg.seeds = {'conn': 4321, 'stim': 4321, 'loc': 4321} 
 cfg.hParams = {'celsius': 34, 'v_init': -65}  
@@ -77,7 +77,7 @@ cfg.S1cells = cellParam[0:207]
 
 #------------------------------------------------------------------------------  
 # TO DEBUG - Create only one Cell per MEtype in S1 cells
-cfg.oneCellperMEtypeS1 = True 
+cfg.oneCellperMEtypeS1 = False 
 if cfg.oneCellperMEtypeS1:
 	cfg.popNumber = {}
 	cfg.cellNumber = {} 
@@ -142,7 +142,7 @@ if cfg.oneCellperMEtype:
 
 #--------------------------------------------------------------------------
 # Recording 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 cfg.allpops = cfg.popParamLabels
 cfg.cellsrec = 2
@@ -171,7 +171,6 @@ cfg.recordStep = 0.1
 #------------------------------------------------------------------------------
 # Saving
 #------------------------------------------------------------------------------
-
 cfg.simLabel = 'v1_batch0'
 cfg.saveFolder = '../data/'+cfg.simLabel
 # cfg.filename =                	## Set file output name
@@ -181,7 +180,7 @@ cfg.saveDataInclude = ['simConfig'] ## 'simData' , 'simConfig', 'netParams'
 cfg.backupCfgFile = None 		##  
 cfg.gatherOnlySimData = False	##  
 cfg.saveCellSecs = False			
-cfg.saveCellConns = False	
+cfg.saveCellConns = True	
 
 #------------------------------------------------------------------------------
 # Analysis and plotting 
@@ -192,7 +191,7 @@ cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', '
 
 # cfg.analysis['plot2Dfiring']={'saveFig': True, 'figSize': (24,24), 'fontSize':16}
 
-# cfg.analysis['plotConn'] = {'includePre': cfg.allpops, 'includePost': cfg.allpops, 'feature': 'convergence', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 18}
+cfg.analysis['plotConn'] = {'includePre': cfg.allpops, 'includePost': cfg.allpops, 'feature': 'convergence', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 18}
 
 # cfg.analysis['plot2Dnet']   = {'include': cfg.allpops, 'saveFig': True, 'showConns': False, 'figSize': (24,24), 'fontSize':16}   # Plot 2D net cells and connections
 
@@ -202,7 +201,6 @@ cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', '
 #------------------------------------------------------------------------------
 # Network 
 #------------------------------------------------------------------------------
-
 cfg.scale = 1.0 # reduce size
 cfg.sizeY = 1378.8
 cfg.sizeX = 300.0 # r = 150 um 
@@ -248,10 +246,15 @@ cfg.connWeight_RTN_TC       = 100.0*0.25 # optimized to increase synchrony in (s
 cfg.divergenceHO = 10
 cfg.connLenghtConst = 200
 
-## S1-Th
-cfg.connect_TC_CTX      = False
-cfg.connect_CTX_TC      = False
+## S1->Th
+cfg.connect_Th_S1 = True
+cfg.TC_S1 = {}
+cfg.TC_S1['VPL_sTC'] = True
+cfg.TC_S1['VPM_sTC'] = True
+cfg.TC_S1['POm_sTC_s1'] = True
 
+## Th->S1
+cfg.connect_S1_Th = False
 
 #------------------------------------------------------------------------------
 # Current inputs 

@@ -1,0 +1,32 @@
+{
+    "batch": {
+        "batchLabel": "v1_batch6",
+        "cfgFile": "cfg.py",
+        "evolCfg": {
+            "fitnessFunc": "removed"
+        },
+        "initCfg": {},
+        "method": "grid",
+        "netParamsFile": "netParams.py",
+        "params": [
+            {
+                "label": [
+                    "seeds",
+                    "conn"
+                ],
+                "values": [
+                    4321
+                ]
+            }
+        ],
+        "runCfg": {
+            "cores": 60,
+            "mpiCommand": "mpiexec",
+            "script": "init.py",
+            "skip": true,
+            "type": "mpi_direct"
+        },
+        "saveFolder": "../data/v1_batch6",
+        "seed": null
+    }
+}
