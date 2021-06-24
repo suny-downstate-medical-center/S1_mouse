@@ -520,7 +520,7 @@ if cfg.connectTh:
                                     'weight': wmat[pre][post], 
                                     'synMechWeightFactor': synWeightFactor,
                                     'delay': 'defaultDelay+dist_3D/propVelocity',
-                                    'synsPerConn': 10,
+                                    'synsPerConn': 1,
                                     'sec': 'soma'}
 
     if cfg.connect_TC_RTN:
@@ -552,7 +552,7 @@ if cfg.connectTh:
                                 'weight': wmat[pre][post], 
                                 'synMechWeightFactor': synWeightFactor,
                                 'delay': 'defaultDelay+dist_3D/propVelocity',
-                                'synsPerConn': 10,
+                                'synsPerConn': 1,
                                 'sec': 'soma'}
 
     if cfg.connect_RTN_TC:
@@ -584,7 +584,7 @@ if cfg.connectTh:
                                 'weight': wmat[pre][post], 
                                 'synMechWeightFactor': synWeightFactor,
                                 'delay': 'defaultDelay+dist_3D/propVelocity',
-                                'synsPerConn': 10,
+                                'synsPerConn': 1,
                                 'sec': 'soma'}
 
 #------------------------------------------------------------------------------
@@ -603,19 +603,18 @@ if cfg.connect_Th_S1:
 
     for line in mtype_content.split('\n')[:-1]:
         mtype, preFO, preHO, nameref  = line.split()
-        convergence_Th_S1['VPM_sTC'][mtype] = int(0.01* int(preFO)) # First Order
-        convergence_Th_S1['VPL_sTC'][mtype] = int(0.01* int(preFO)) # First Order  
-        convergence_Th_S1['POm_sTC_s1'][mtype] = int(0.01* int(preHO)) # High Order 
+        convergence_Th_S1['VPL_sTC'][mtype] = int(0.1*int(preFO)) # First Order  
+        convergence_Th_S1['VPM_sTC'][mtype] = int(0.1*int(preFO)) # First Order
+        convergence_Th_S1['POm_sTC_s1'][mtype] = int(0.1*int(preHO)) # High Order 
 
     ## Connectivity rules
     radius_cilinder = netParams.sizeX/2.0
     synapsesperconnection_Th_S1 = 9.0
     radius2D_Th_S1 = 50.0
 
-
-    for pre in ['VPL_sTC', 'VPM_sTC', 'POm_sTC_s1']:
+    for pre in ['VPL_sTC', 'VPM_sTC', 'POm_sTC_s1']:  #  
         if cfg.TC_S1[pre]:
-            for post in Epops+Ipops: 
+            for post in ['L5_TTPC2', 'L5_LBC', 'L6_TPC_L4', 'L6_LBC']:  #  Epops+Ipops: 
                 
                 conn_convergence = np.ceil(convergence_Th_S1[pre][post]/synapsesperconnection_Th_S1)
                 prob_conv = 1.0*(conn_convergence/cfg.popNumber[pre])*((radius_cilinder**2)/(radius2D_Th_S1**2)) # prob*(AreaS1/Area_Th_syn)  
