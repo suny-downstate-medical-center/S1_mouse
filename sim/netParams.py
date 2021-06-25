@@ -168,7 +168,7 @@ for cellName in cfg.S1cells:
         cellRule['secLists']['spinyEE'] = [sec for sec in cellRule['secLists']['all'] if sec not in nonSpinyEE]
 
         #-----------------------------------------------------------------------------------#
-        cfg.reducedtest = True    
+        cfg.reducedtest = False   
         if cfg.reducedtest:
             cellRule['secs'] = {}
             cellRule['secs']['soma'] = netParams.cellParams[cellMe]['secs']['soma']
@@ -603,9 +603,9 @@ if cfg.connect_Th_S1:
 
     for line in mtype_content.split('\n')[:-1]:
         mtype, preFO, preHO, nameref  = line.split()
-        convergence_Th_S1['VPL_sTC'][mtype] = int(0.1*int(preFO)) # First Order  
-        convergence_Th_S1['VPM_sTC'][mtype] = int(0.1*int(preFO)) # First Order
-        convergence_Th_S1['POm_sTC_s1'][mtype] = int(0.1*int(preHO)) # High Order 
+        convergence_Th_S1['VPL_sTC'][mtype] = int(cfg.frac_Th_S1*int(preFO)) # First Order  
+        convergence_Th_S1['VPM_sTC'][mtype] = int(cfg.frac_Th_S1*int(preFO)) # First Order
+        convergence_Th_S1['POm_sTC_s1'][mtype] = int(cfg.frac_Th_S1*int(preHO)) # High Order 
 
     ## Connectivity rules
     radius_cilinder = netParams.sizeX/2.0
@@ -614,7 +614,7 @@ if cfg.connect_Th_S1:
 
     for pre in ['VPL_sTC', 'VPM_sTC', 'POm_sTC_s1']:  #  
         if cfg.TC_S1[pre]:
-            for post in ['L5_TTPC2', 'L5_LBC', 'L6_TPC_L4', 'L6_LBC']:  #  Epops+Ipops: 
+            for post in Epops+Ipops: 
                 
                 conn_convergence = np.ceil(convergence_Th_S1[pre][post]/synapsesperconnection_Th_S1)
                 prob_conv = 1.0*(conn_convergence/cfg.popNumber[pre])*((radius_cilinder**2)/(radius2D_Th_S1**2)) # prob*(AreaS1/Area_Th_syn)  
@@ -632,6 +632,73 @@ if cfg.connect_Th_S1:
                     netParams.connParams['thal_'+pre+'_'+post]['convergence'] = conn_convergence # non-topographycal connectivity
                 else:
                     netParams.connParams['thal_'+pre+'_'+post]['probability'] = probability_rule # FO (First Order)
+
+#------------------------------------------------------------------------------
+# Th->S1 connectivity parameters
+#------------------------------------------------------------------------------
+if cfg.connect_S1_Th:
+
+    ## load data from conn pre-processing file
+    with open('conn/conn_Th.pkl', 'rb') as fileObj: connData = pickle.load(fileObj)
+    pmat = connData['pmat']
+    lmat = connData['lmat']
+    wmat = connData['wmat']
+    cmat = connData['cmat']
+    
+    pops_TC     = ['VPL_sTC','VPM_sTC', 'POm_sTC_s1']
+    pops_RTN    = ['ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i']
+    pops_FO     = ['VPL_sTC','VPM_sTC']
+    pops_HO     = ['POm_sTC_s1'],
+
+    pops_CT     = ['L5_TTPC2', 'L6_TPC_L4']
+    radius2D_S1_TC = 100.0
+    radius2D_S1_RTN = 75.0
+
+    if cfg.connect_S1_RTN:
+        for pre in pops_CT:
+            for post in pops_RTN:
+
+                syn = ['AMPA_Th'] # AMPA
+                synWeightFactor = [1.0]
+
+                conn_method = 'probability'
+                prob_rule = '%f*dist_2D<%f' % (cfg.connProb_TC_RTN/2.0,radius2D_S1_RTN)
+
+                netParams.connParams['thal_'+pre+'_'+post] = { 
+                                'preConds': {'pop': pre}, 
+                                'postConds': {'pop': post},
+                                'synMech': syn,
+                                conn_method:  prob_rule,
+                                'weight': cfg.connWeight_TC_RTN, 
+                                'synMechWeightFactor': synWeightFactor,
+                                'delay': 'defaultDelay+dist_3D/propVelocity',
+                                'synsPerConn': 1,
+                                'sec': 'soma'}
+
+    if cfg.connect_S1_TC:
+        for pre in pops_CT:
+            for post in pops_TC:
+
+                syn = ['AMPA_Th'] # AMPA
+                synWeightFactor = [1.0]
+
+                if post in pops_HO:
+                    conn_method = 'divergence'
+                    prob_rule = cfg.divergenceHO/2.0
+                else: # topographycal connectivity
+                    conn_method = 'probability'
+                    prob_rule = '%f*dist_2D<%f' % (cfg.connProb_TC_RTN/2.0,radius2D_S1_TC)
+
+                    netParams.connParams['thal_'+pre+'_'+post] = { 
+                                'preConds': {'pop': pre}, 
+                                'postConds': {'pop': post},
+                                'synMech': syn,
+                                conn_method:  prob_rule,
+                                'weight': cfg.connWeight_TC_RTN, 
+                                'synMechWeightFactor': synWeightFactor,
+                                'delay': 'defaultDelay+dist_3D/propVelocity',
+                                'synsPerConn': 1,
+                                'sec': 'soma'}
 
 #------------------------------------------------------------------------------    
 # Current inputs (IClamp)

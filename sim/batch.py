@@ -15,8 +15,10 @@ import numpy as np
 def custom():
     params = specs.ODict()
     
-    params[('seeds', 'conn')] =  [4321] #,1234 , 4321 , 1111, 2222
-    # params[('rateStimE')] = [6.0]
+    # params[('seeds', 'conn')] =  [1234]
+
+    params[('frac_Th_S1')] = [0.0, 0.1, 0.5, 1.0]
+
     # params[('rateStimI')] = [9.0]
 
     b = Batch(params=params, netParamsFile='netParams.py', cfgFile='cfg.py')
@@ -34,7 +36,7 @@ def setRunCfg(b, type='mpi_bulletin'):
 
     elif type=='mpi_direct':
         b.runCfg = {'type': 'mpi_direct',
-            'cores': 4,
+            'cores': 15,
             'script': 'init.py',
             'mpiCommand': 'mpiexec', # i7         --use-hwthread-cpus
             'skip': True}
@@ -57,7 +59,7 @@ def setRunCfg(b, type='mpi_bulletin'):
 if __name__ == '__main__': 
     b = custom() #
 
-    b.batchLabel = 'v1_batch7'  
+    b.batchLabel = 'v1_batch0'  
     b.saveFolder = '../data/'+b.batchLabel
     b.method = 'grid'
     setRunCfg(b, 'mpi_direct')     # setRunCfg(b, 'mpi_bulletin')

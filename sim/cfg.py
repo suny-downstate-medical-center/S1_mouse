@@ -22,7 +22,7 @@ cfg = specs.SimConfig()
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 2.0*1e2 ## Duration of the sim, in ms  
+cfg.duration = 5.0*1e3 ## Duration of the sim, in ms  
 cfg.dt = 0.025
 cfg.seeds = {'conn': 4321, 'stim': 4321, 'loc': 4321} 
 cfg.hParams = {'celsius': 34, 'v_init': -65}  
@@ -152,12 +152,12 @@ elif cfg.cellsrec == 2: # record one cell of each cellMEtype (cfg.celldiversity 
 	cfg.recordCells = []
 	cellNumberLabel = 0 
 	for metype in cfg.cellParamLabels:
-		if metype in cfg.thalamicpops:
+		if metype in cfg.cellParamLabels:
 			if cfg.cellNumber[metype] < 5:
 				for numberME in range(cfg.cellNumber[metype]):
 					cfg.recordCells.append((cfg.popLabel[metype],cellNumberLabel+numberME))
 			else:
-				for numberME in range(10): #5
+				for numberME in range(5):
 					cfg.recordCells.append((cfg.popLabel[metype],cellNumberLabel+numberME))
 			cellNumberLabel = cellNumberLabel + cfg.cellNumber[metype]
 			if cellNumberLabel == cfg.popNumber[cfg.popLabel[metype]]:
@@ -176,24 +176,24 @@ cfg.saveFolder = '../data/'+cfg.simLabel
 # cfg.filename =                	## Set file output name
 cfg.savePickle = False         	## Save pkl file
 cfg.saveJson = True	           	## Save json file
-cfg.saveDataInclude = ['simConfig'] ## 'simData' , 'simConfig', 'netParams'
+cfg.saveDataInclude = ['simConfig', 'simData'] ## , 'simConfig', 'netParams'
 cfg.backupCfgFile = None 		##  
 cfg.gatherOnlySimData = False	##  
 cfg.saveCellSecs = False			
-cfg.saveCellConns = True	
+cfg.saveCellConns = False	
 
 #------------------------------------------------------------------------------
 # Analysis and plotting 
 #------------------------------------------------------------------------------
-# cfg.analysis['plotRaster'] = {'include': cfg.allpops, 'saveFig': True, 'showFig': False, 'orderInverse': True, 'timeRange': [0,cfg.duration], 'figSize': (36,18), 'labels': 'legend', 'popRates': True, 'fontSize':12, 'lw': 1, 'markerSize':2, 'marker': '.', 'dpi': 300} 
+cfg.analysis['plotRaster'] = {'include': cfg.allpops, 'saveFig': True, 'showFig': False, 'orderInverse': True, 'timeRange': [0,cfg.duration], 'figSize': (36,18), 'labels': 'legend', 'popRates': True, 'fontSize':12, 'lw': 1, 'markerSize':2, 'marker': '.', 'dpi': 300} 
 
-# cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-100,50], 'saveFig': True, 'showFig': False, 'figSize':(12,4)}
+cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-100,50], 'saveFig': True, 'showFig': False, 'figSize':(12,4)}
 
 # cfg.analysis['plot2Dfiring']={'saveFig': True, 'figSize': (24,24), 'fontSize':16}
 
-cfg.analysis['plotConn'] = {'includePre': ['L5_TTPC2', 'L5_LBC', 'L6_TPC_L4', 'L6_LBC', 'ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i', 'VPL_sTC', 'VPM_sTC', 'POm_sTC_s1'], 'includePost': ['L5_TTPC2', 'L5_LBC', 'L6_TPC_L4', 'L6_LBC', 'ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i', 'VPL_sTC', 'VPM_sTC', 'POm_sTC_s1'], 'feature': 'convergence', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 18}
+# cfg.analysis['plotConn'] = {'includePre': ['L5_TTPC2', 'L5_LBC', 'L6_TPC_L4', 'L6_LBC', 'ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i', 'VPL_sTC', 'VPM_sTC', 'POm_sTC_s1'], 'includePost': ['L5_TTPC2', 'L5_LBC', 'L6_TPC_L4', 'L6_LBC', 'ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i', 'VPL_sTC', 'VPM_sTC', 'POm_sTC_s1'], 'feature': 'convergence', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 18}
 
-cfg.analysis['plot2Dnet']   = {'include': ['L5_LBC', 'VPM_sTC', 'POm_sTC_s1'], 'saveFig': True, 'showConns': True, 'figSize': (24,24), 'fontSize':16}   # Plot 2D net cells and connections
+# cfg.analysis['plot2Dnet']   = {'include': ['L5_LBC', 'VPM_sTC', 'POm_sTC_s1'], 'saveFig': True, 'showConns': True, 'figSize': (24,24), 'fontSize':16}   # Plot 2D net cells and connections
 
 # cfg.analysis['plotShape'] = {'includePre': cfg.recordCells, 'includePost': cfg.recordCells, 'showFig': False, 'includeAxon': False, 
                             # 'showSyns': False, 'saveFig': True, 'dist': 0.55, 'cvar': 'voltage', 'figSize': (24,12), 'dpi': 600}
@@ -210,14 +210,14 @@ cfg.scaleDensity = 1.0 # Number of cells = 7859
 #------------------------------------------------------------------------------
 # Spontaneous synapses + background - data from Rat
 #------------------------------------------------------------------------------
-cfg.addStimSynS1 = 0
+cfg.addStimSynS1 = 1
 cfg.rateStimE = 6.0
 cfg.rateStimI = 9.0
 #------------------------------------------------------------------------------
 # Connectivity2
 #------------------------------------------------------------------------------
 ##S1
-cfg.addConn = 0
+cfg.addConn = 1
 
 cfg.synWeightFractionEE = [1.0, 1.0] # E -> E AMPA to NMDA ratio
 cfg.synWeightFractionEI = [1.0, 1.0] # E -> I AMPA to NMDA ratio
@@ -230,7 +230,7 @@ cfg.IEGain = 1.0
 
 #------------------------------------------------------------------------------
 ##Th
-cfg.connectTh = False
+cfg.connectTh = True
 cfg.connect_RTN_RTN     = True
 cfg.connect_TC_RTN      = True
 cfg.connect_RTN_TC      = True
@@ -255,14 +255,17 @@ cfg.TC_S1['VPL_sTC'] = True
 cfg.TC_S1['VPM_sTC'] = True
 cfg.TC_S1['POm_sTC_s1'] = True
 
+cfg.frac_Th_S1 = 0.1
 #------------------------------------------------------------------------------
 ## S1->Th 
 cfg.connect_S1_Th = False
+cfg.connect_S1_RTN = False
+cfg.connect_S1_TC = False
 
 #------------------------------------------------------------------------------
 # Current inputs 
 #------------------------------------------------------------------------------
-cfg.addIClamp = 0
+cfg.addIClamp = 1
  
 cfg.IClamp = []
 cfg.IClampnumber = 0
