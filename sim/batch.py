@@ -17,7 +17,7 @@ def custom():
     
     # params[('seeds', 'conn')] =  [1234]
 
-    params[('frac_Th_S1')] = [0.0, 0.1, 0.5, 1.0]
+    params[('frac_Th_S1')] = [1.0]
 
     # params[('rateStimI')] = [9.0]
 
@@ -36,9 +36,9 @@ def setRunCfg(b, type='mpi_bulletin'):
 
     elif type=='mpi_direct':
         b.runCfg = {'type': 'mpi_direct',
-            'cores': 15,
+            'cores': 40,
             'script': 'init.py',
-            'mpiCommand': 'mpiexec', # i7         --use-hwthread-cpus
+            'mpiCommand': 'mpiexec',
             'skip': True}
 
     elif type=='hpc_slurm_gcp':
@@ -46,9 +46,9 @@ def setRunCfg(b, type='mpi_bulletin'):
             'allocation': 'default',
             'walltime': '24:00:00', 
             'nodes': 1,
-            'coresPerNode': 96,
+            'coresPerNode': 80,
             'email': 'salvadordura@gmail.com',
-            'folder': '/home/ext_salvadordura_gmail_com/m1/sim/', 
+            'folder': '/home/ext_fernandodasilvaborges_gmail_/S1_mouse/sim/', 
             'script': 'init.py', 
             'mpiCommand': 'mpirun',
             'skipCustom': '_raster.png'}
@@ -59,8 +59,8 @@ def setRunCfg(b, type='mpi_bulletin'):
 if __name__ == '__main__': 
     b = custom() #
 
-    b.batchLabel = 'v1_batch0'  
+    b.batchLabel = 'v1_batch3'  
     b.saveFolder = '../data/'+b.batchLabel
     b.method = 'grid'
-    setRunCfg(b, 'mpi_direct')     # setRunCfg(b, 'mpi_bulletin')
+    setRunCfg(b, 'hpc_slurm_gcp')
     b.run() # run batch
