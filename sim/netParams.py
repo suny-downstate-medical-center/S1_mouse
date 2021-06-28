@@ -229,12 +229,8 @@ netParams.synMechParams['NMDA_Th']             = {'mod': 'MyExp2SynNMDABB',    '
 netParams.synMechParams['AMPA_Th']             = {'mod': 'MyExp2SynBB',        'tau1': 0.05,   'tau2': 5.3, 'e': 0}
 netParams.synMechParams['GABAB_Th']            = {'mod': 'MyExp2SynBB',        'tau1': 3.5,    'tau2': 260.9,                  'e': -93} 
 netParams.synMechParams['GABAA_Th']            = {'mod': 'MyExp2SynBB',        'tau1': 0.07,   'tau2': 18.2,                   'e': -80}
-netParams.synMechParams['GABAASlow_Th']        = {'mod': 'MyExp2SynBB',        'tau1': 2,      'tau2': 100,                    'e': -80}
-netParams.synMechParams['GABAASlowSlow_Th']    = {'mod': 'MyExp2SynBB',        'tau1': 200,    'tau2': 400,                    'e': -80}
 
 ESynMech_Th    = ['AMPA_Th', 'NMDA_Th']
-SOMESynMech_Th = ['GABAASlow_Th','GABAB_Th']
-SOMISynMech_Th = ['GABAASlow_Th']
 PVSynMech_Th   = ['GABAA_Th']
 NGFSynMech_Th  = ['GABAA_Th', 'GABAB_Th']
 
@@ -634,7 +630,7 @@ if cfg.connect_Th_S1:
                     netParams.connParams['thal_'+pre+'_'+post]['probability'] = probability_rule # FO (First Order)
 
 #------------------------------------------------------------------------------
-# Th->S1 connectivity parameters
+# S1-> connectivity parameters Th
 #------------------------------------------------------------------------------
 if cfg.connect_S1_Th:
 
@@ -662,14 +658,14 @@ if cfg.connect_S1_Th:
                 synWeightFactor = [1.0]
 
                 conn_method = 'probability'
-                prob_rule = '%f*dist_2D<%f' % (cfg.connProb_TC_RTN/2.0,radius2D_S1_RTN)
+                prob_rule = '%f*dist_2D<%f' % (cfg.connProb_S1_RTN,radius2D_S1_RTN)
 
                 netParams.connParams['thal_'+pre+'_'+post] = { 
                                 'preConds': {'pop': pre}, 
                                 'postConds': {'pop': post},
                                 'synMech': syn,
                                 conn_method:  prob_rule,
-                                'weight': cfg.connWeight_TC_RTN, 
+                                'weight': cfg.connWeight_S1_RTN, 
                                 'synMechWeightFactor': synWeightFactor,
                                 'delay': 'defaultDelay+dist_3D/propVelocity',
                                 'synsPerConn': 1,
@@ -687,14 +683,14 @@ if cfg.connect_S1_Th:
                     prob_rule = cfg.divergenceHO/2.0
                 else: # topographycal connectivity
                     conn_method = 'probability'
-                    prob_rule = '%f*dist_2D<%f' % (cfg.connProb_TC_RTN/2.0,radius2D_S1_TC)
+                    prob_rule = '%f*dist_2D<%f' % (cfg.connProb_S1_TC,radius2D_S1_TC)
 
                     netParams.connParams['thal_'+pre+'_'+post] = { 
                                 'preConds': {'pop': pre}, 
                                 'postConds': {'pop': post},
                                 'synMech': syn,
                                 conn_method:  prob_rule,
-                                'weight': cfg.connWeight_TC_RTN, 
+                                'weight': cfg.connWeight_S1_TC, 
                                 'synMechWeightFactor': synWeightFactor,
                                 'delay': 'defaultDelay+dist_3D/propVelocity',
                                 'synsPerConn': 1,

@@ -17,7 +17,8 @@ def custom():
     
     # params[('seeds', 'conn')] =  [1234]
 
-    params[('frac_Th_S1')] = [1.0]
+    params[('connWeight_S1_RTN')] = [500.0]
+    params[('connWeight_S1_TC')] = [250.0]
 
     # params[('rateStimI')] = [9.0]
 
@@ -46,7 +47,7 @@ def setRunCfg(b, type='mpi_bulletin'):
             'allocation': 'default',
             'walltime': '24:00:00', 
             'nodes': 1,
-            'coresPerNode': 80,
+            'coresPerNode': 40,
             'email': 'salvadordura@gmail.com',
             'folder': '/home/ext_fernandodasilvaborges_gmail_/S1_mouse/sim/', 
             'script': 'init.py', 

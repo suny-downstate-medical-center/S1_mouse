@@ -22,7 +22,7 @@ cfg = specs.SimConfig()
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 5.0*1e3 ## Duration of the sim, in ms  
+cfg.duration = 6.0*1e2 ## Duration of the sim, in ms  
 cfg.dt = 0.025
 cfg.seeds = {'conn': 4321, 'stim': 4321, 'loc': 4321} 
 cfg.hParams = {'celsius': 34, 'v_init': -65}  
@@ -236,6 +236,9 @@ cfg.connect_TC_RTN      = True
 cfg.connect_RTN_TC      = True
 
 # parameters tuned in (simDate = '2021_04_16' / simCode = 'jv019' - 'stabilizing the Firing rates of the model')
+# I'm using scaleConnWeight = 0.001 # weight conversion factor (from nS to uS)
+# from uS to nS -> '1000*' is used!
+
 cfg.yConnFactor             = 10 # y-tolerance form connection distance based on the x and z-plane radial tolerances (1=100%; 2=50%; 5=20%; 10=10%)
 cfg.connProb_RTN_RTN        = 1.0 #None 
 cfg.connWeight_RTN_RTN      = 1000.0*2.0 # optimized to increase synchrony in (simDate = '2021_04_30' / simCode = 't_allpops_012') - old value: 0.5
@@ -248,6 +251,11 @@ cfg.divergenceHO = 10
 cfg.connLenghtConst = 200
 
 #------------------------------------------------------------------------------
+# Gentet and Ulrich (2004) corticoreticular EPSPs = 2.4 ± 0.1 mV
+# 						   thalamoreticular EPSPs = 7.4 ± 1.5 mV
+# They are strong compared with EPSPs recorded in relay cells from corticothalamic activation (Golshani et al. 2001; Liu et al. 2008).
+# 						   corticothalamic < 2.4 ± 0.1 mV
+#------------------------------------------------------------------------------
 ## Th->S1
 cfg.connect_Th_S1 = True
 cfg.TC_S1 = {}
@@ -255,12 +263,18 @@ cfg.TC_S1['VPL_sTC'] = True
 cfg.TC_S1['VPM_sTC'] = True
 cfg.TC_S1['POm_sTC_s1'] = True
 
-cfg.frac_Th_S1 = 0.1
+cfg.frac_Th_S1 = 1.0
 #------------------------------------------------------------------------------
 ## S1->Th 
 cfg.connect_S1_Th = True
+
 cfg.connect_S1_RTN = True
+cfg.connProb_S1_RTN         = 0.5  # dist_2D<R
+cfg.connWeight_S1_RTN       = 500.0 
+
 cfg.connect_S1_TC = True
+cfg.connProb_S1_TC         = 0.5 # dist_2D<R
+cfg.connWeight_S1_TC       = 250.0
 
 #------------------------------------------------------------------------------
 # Current inputs 
@@ -270,9 +284,19 @@ cfg.addIClamp = 1
 cfg.IClamp = []
 cfg.IClampnumber = 0
 
-cfg.thalamocorticalconnections =  ['VPL_sTC', 'VPM_sTC', 'POm_sTC_s1'] # decrease the transient
+cfg.thalamocorticalconnections =  ['VPL_sTC'] # decrease the transient
 for popName in cfg.thalamocorticalconnections:
-    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 0, 'dur': 25, 'amp': 2.0}) #pA
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 0, 'dur': 25, 'amp': -20.0}) #pA
+    cfg.IClampnumber=cfg.IClampnumber+1
+
+cfg.thalamocorticalconnections =  ['VPM_sTC'] # decrease the transient
+for popName in cfg.thalamocorticalconnections:
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 0, 'dur': 50, 'amp': -10.0}) #pA
+    cfg.IClampnumber=cfg.IClampnumber+1
+
+cfg.thalamocorticalconnections =  ['POm_sTC_s1'] # decrease the transient
+for popName in cfg.thalamocorticalconnections:
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 0, 'dur': 75, 'amp': -2.0}) #pA
     cfg.IClampnumber=cfg.IClampnumber+1
 
 #------------------------------------------------------------------------------

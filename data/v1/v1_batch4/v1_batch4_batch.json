@@ -1,0 +1,58 @@
+{
+    "batch": {
+        "batchLabel": "v1_batch4",
+        "cfgFile": "cfg.py",
+        "evolCfg": {
+            "fitnessFunc": "removed"
+        },
+        "initCfg": {},
+        "method": "grid",
+        "netParamsFile": "netParams.py",
+        "params": [
+            {
+                "label": [
+                    "TC_S1",
+                    "VPL_sTC"
+                ],
+                "values": [
+                    false,
+                    true
+                ]
+            },
+            {
+                "label": [
+                    "TC_S1",
+                    "VPM_sTC"
+                ],
+                "values": [
+                    false,
+                    true
+                ]
+            },
+            {
+                "label": [
+                    "TC_S1",
+                    "POm_sTC_s1"
+                ],
+                "values": [
+                    false,
+                    true
+                ]
+            }
+        ],
+        "runCfg": {
+            "allocation": "default",
+            "coresPerNode": 80,
+            "email": "fernandodasilvaborges@gmail.com",
+            "folder": "/home/ext_fernandodasilvaborges_gmail_/S1_mouse/sim/",
+            "mpiCommand": "mpirun",
+            "nodes": 1,
+            "script": "init.py",
+            "skipCustom": "_raster.png",
+            "type": "hpc_slurm",
+            "walltime": "24:00:00"
+        },
+        "saveFolder": "../data/v1_batch4",
+        "seed": null
+    }
+}
