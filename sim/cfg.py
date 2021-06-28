@@ -258,9 +258,9 @@ cfg.TC_S1['POm_sTC_s1'] = True
 cfg.frac_Th_S1 = 0.1
 #------------------------------------------------------------------------------
 ## S1->Th 
-cfg.connect_S1_Th = False
-cfg.connect_S1_RTN = False
-cfg.connect_S1_TC = False
+cfg.connect_S1_Th = True
+cfg.connect_S1_RTN = True
+cfg.connect_S1_TC = True
 
 #------------------------------------------------------------------------------
 # Current inputs 
