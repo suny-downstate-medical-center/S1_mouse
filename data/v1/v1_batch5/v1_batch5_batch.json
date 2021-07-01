@@ -1,0 +1,44 @@
+{
+    "batch": {
+        "batchLabel": "v1_batch5",
+        "cfgFile": "cfg.py",
+        "evolCfg": {
+            "fitnessFunc": "removed"
+        },
+        "initCfg": {},
+        "method": "grid",
+        "netParamsFile": "netParams.py",
+        "params": [
+            {
+                "label": "connWeight_S1_RTN",
+                "values": [
+                    100.0,
+                    250.0,
+                    500.0
+                ]
+            },
+            {
+                "label": "connWeight_S1_TC",
+                "values": [
+                    100.0,
+                    250.0,
+                    500.0
+                ]
+            }
+        ],
+        "runCfg": {
+            "allocation": "default",
+            "coresPerNode": 80,
+            "email": "salvadordura@gmail.com",
+            "folder": "/home/ext_fernandodasilvaborges_gmail_/S1_mouse/sim/",
+            "mpiCommand": "mpirun",
+            "nodes": 1,
+            "script": "init.py",
+            "skipCustom": "_raster.png",
+            "type": "hpc_slurm",
+            "walltime": "24:00:00"
+        },
+        "saveFolder": "../data/v1_batch5",
+        "seed": null
+    }
+}

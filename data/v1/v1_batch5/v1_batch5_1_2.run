@@ -1,0 +1,963 @@
+numprocs=80
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+Loading simConfig...
+
+Reading command line arguments using syntax: python file.py [simConfig=filepath] [netParams=filepath]
+Loading file ../data/v1_batch5/v1_batch5_1_2_cfg.json ... 
+Loading simConfig...
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+
+Start time:  2021-06-29 04:09:13.102805
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+Importing netParams from ../data/v1_batch5/v1_batch5_netParams.py
+
+Creating network of 61 cell populations on 80 hosts...
+  Number of cells on node 31: 145 
+  Number of cells on node 45: 145 
+  Number of cells on node 27: 145 
+  Number of cells on node 21: 145 
+  Number of cells on node 37: 145 
+  Number of cells on node 53: 144 
+  Number of cells on node 9: 145 
+  Number of cells on node 35: 145 
+  Number of cells on node 1: 145 
+  Number of cells on node 30: 145 
+  Number of cells on node 76: 144 
+  Number of cells on node 44: 145 
+  Number of cells on node 29: 145 
+  Number of cells on node 60: 144 
+  Number of cells on node 68: 144 
+  Number of cells on node 43: 145 
+  Number of cells on node 39: 145 
+  Number of cells on node 11: 145 
+  Number of cells on node 20: 145 
+  Number of cells on node 32: 145 
+  Number of cells on node 3: 145 
+  Number of cells on node 26: 145 
+  Number of cells on node 42: 145 
+  Number of cells on node 56: 144 
+  Number of cells on node 67: 144 
+  Number of cells on node 52: 144 
+  Number of cells on node 74: 144 
+  Number of cells on node 46: 145 
+  Number of cells on node 58: 144 
+  Number of cells on node 51: 144 
+  Number of cells on node 49: 144 
+  Number of cells on node 47: 145 
+  Number of cells on node 28: 145 
+  Number of cells on node 10: 145 
+  Number of cells on node 13: 145 
+  Number of cells on node 6: 145 
+  Number of cells on node 75: 144 
+  Number of cells on node 62: 144 
+  Number of cells on node 77: 144 
+  Number of cells on node 69: 144 
+  Number of cells on node 50: 144 
+  Number of cells on node 66: 144 
+  Number of cells on node 73: 144 
+  Number of cells on node 16: 145 
+  Number of cells on node 48: 144 
+  Number of cells on node 36: 145 
+  Number of cells on node 65: 144 
+  Number of cells on node 78: 144 
+  Number of cells on node 61: 144 
+  Number of cells on node 55: 144 
+  Number of cells on node 2: 145 
+  Number of cells on node 18: 145 
+  Number of cells on node 25: 145 
+  Number of cells on node 0: 145 
+  Done; cell creation time = 14.67 s.
+Making connections...
+  Number of cells on node 4: 145 
+  Number of cells on node 71: 144 
+  Number of cells on node 57: 144 
+  Number of cells on node 38: 145 
+  Number of cells on node 79: 144 
+  Number of cells on node 72: 144 
+  Number of cells on node 5: 145 
+  Number of cells on node 34: 145 
+  Number of cells on node 12: 145 
+  Number of cells on node 23: 145 
+  Number of cells on node 64: 144 
+  Number of cells on node 19: 145 
+  Number of cells on node 70: 144 
+  Number of cells on node 40: 145 
+  Number of cells on node 15: 145 
+  Number of cells on node 59: 144 
+  Number of cells on node 17: 145 
+  Number of cells on node 7: 145 
+  Number of cells on node 63: 144 
+  Number of cells on node 8: 145 
+  Number of cells on node 33: 145 
+  Number of cells on node 24: 145 
+  Number of cells on node 22: 145 
+  Number of cells on node 54: 144 
+  Number of cells on node 14: 145 
+  Number of cells on node 41: 145 
+  Number of connections on node 0: 27741 
+  Number of synaptic contacts on node 0: 189657 
+  Number of connections on node 8: 27425 
+  Number of synaptic contacts on node 8: 188871 
+  Number of connections on node 43: 28272 
+  Number of synaptic contacts on node 43: 189469 
+  Number of connections on node 58: 27141 
+  Number of synaptic contacts on node 58: 185208 
+  Number of connections on node 29: 28763 
+  Number of synaptic contacts on node 29: 195306 
+  Number of connections on node 68: 28114 
+  Number of synaptic contacts on node 68: 189302 
+  Number of connections on node 42: 28601 
+  Number of synaptic contacts on node 42: 189290 
+  Number of connections on node 16: 28052 
+  Number of synaptic contacts on node 16: 193089 
+  Number of connections on node 57: 27350 
+  Number of synaptic contacts on node 57: 189623 
+  Number of connections on node 24: 27288 
+  Number of synaptic contacts on node 24: 187987 
+  Number of connections on node 56: 27532 
+  Number of synaptic contacts on node 56: 185097 
+  Number of connections on node 3: 27305 
+  Number of synaptic contacts on node 3: 183322 
+  Number of connections on node 1: 27140 
+  Number of synaptic contacts on node 1: 187371 
+  Number of connections on node 66: 26895 
+  Number of synaptic contacts on node 66: 179798 
+  Number of connections on node 63: 27966 
+  Number of synaptic contacts on node 63: 186825 
+  Number of connections on node 28: 28011 
+  Number of synaptic contacts on node 28: 190929 
+  Number of connections on node 37: 27764 
+  Number of synaptic contacts on node 37: 189981 
+  Number of connections on node 45: 27994 
+  Number of synaptic contacts on node 45: 188633 
+  Number of connections on node 5: 26721 
+  Number of synaptic contacts on node 5: 181611 
+  Number of connections on node 52: 27436 
+  Number of synaptic contacts on node 52: 182850 
+  Number of connections on node 54: 27982 
+  Number of synaptic contacts on node 54: 186466 
+  Number of connections on node 7: 27700 
+  Number of synaptic contacts on node 7: 190709 
+  Number of connections on node 15: 27807 
+  Number of synaptic contacts on node 15: 187825 
+  Number of connections on node 10: 27314 
+  Number of synaptic contacts on node 10: 186971 
+  Number of connections on node 31: 28699 
+  Number of synaptic contacts on node 31: 190930 
+  Number of connections on node 14: 27778 
+  Number of synaptic contacts on node 14: 191191 
+  Number of connections on node 75: 26968 
+  Number of synaptic contacts on node 75: 183812 
+  Number of connections on node 50: 28021 
+  Number of synaptic contacts on node 50: 189085 
+  Number of connections on node 2: 26476 
+  Number of synaptic contacts on node 2: 179569 
+  Number of connections on node 51: 29184 
+  Number of synaptic contacts on node 51: 193228 
+  Number of connections on node 44: 28345 
+  Number of synaptic contacts on node 44: 189133 
+  Number of connections on node 34: 26560 
+  Number of synaptic contacts on node 34: 181795 
+  Number of connections on node 18: 26959 
+  Number of synaptic contacts on node 18: 190469 
+  Number of connections on node 36: 27102 
+  Number of synaptic contacts on node 36: 183235 
+  Number of connections on node 55: 27409 
+  Number of synaptic contacts on node 55: 178548 
+  Number of connections on node 64: 27746 
+  Number of synaptic contacts on node 64: 187657 
+  Number of connections on node 11: 27023 
+  Number of synaptic contacts on node 11: 182351 
+  Number of connections on node 41: 26914 
+  Number of synaptic contacts on node 41: 182226 
+  Number of connections on node 9: 27774 
+  Number of synaptic contacts on node 9: 189598 
+  Number of connections on node 22: 27402 
+  Number of synaptic contacts on node 22: 189210 
+  Number of connections on node 32: 28305 
+  Number of synaptic contacts on node 32: 186962 
+  Number of connections on node 78: 28073 
+  Number of synaptic contacts on node 78: 193369 
+  Number of connections on node 74: 26931 
+  Number of synaptic contacts on node 74: 181353 
+  Number of connections on node 19: 26929 
+  Number of synaptic contacts on node 19: 182734 
+  Number of connections on node 49: 27097 
+  Number of synaptic contacts on node 49: 191343 
+  Number of connections on node 35: 27481 
+  Number of synaptic contacts on node 35: 184543 
+  Number of connections on node 60: 27442 
+  Number of synaptic contacts on node 60: 189711 
+  Number of connections on node 46: 28110 
+  Number of synaptic contacts on node 46: 188985 
+  Number of connections on node 17: 28189 
+  Number of synaptic contacts on node 17: 192173 
+  Number of connections on node 69: 27359 
+  Number of synaptic contacts on node 69: 183450 
+  Number of connections on node 30: 27193 
+  Number of synaptic contacts on node 30: 184665 
+  Number of connections on node 76: 27341 
+  Number of synaptic contacts on node 76: 180673 
+  Number of connections on node 4: 27785 
+  Number of synaptic contacts on node 4: 186755 
+  Number of connections on node 23: 28104 
+  Number of synaptic contacts on node 23: 189298 
+  Number of connections on node 47: 28673 
+  Number of synaptic contacts on node 47: 192614 
+  Number of connections on node 53: 27509 
+  Number of synaptic contacts on node 53: 191466 
+  Number of connections on node 73: 27338 
+  Number of synaptic contacts on node 73: 188293 
+  Number of connections on node 20: 28727 
+  Number of synaptic contacts on node 20: 194410 
+  Number of connections on node 33: 27430 
+  Number of synaptic contacts on node 33: 184935 
+  Number of connections on node 26: 27686 
+  Number of synaptic contacts on node 26: 188929 
+  Number of connections on node 77: 26996 
+  Number of synaptic contacts on node 77: 182638 
+  Number of connections on node 59: 27433 
+  Number of synaptic contacts on node 59: 188409 
+  Number of connections on node 40: 27517 
+  Number of synaptic contacts on node 40: 185347 
+  Number of connections on node 27: 28219 
+  Number of synaptic contacts on node 27: 185262 
+  Number of connections on node 21: 28334 
+  Number of synaptic contacts on node 21: 188741 
+  Number of connections on node 79: 26774 
+  Number of synaptic contacts on node 79: 187050 
+  Number of connections on node 39: 27250 
+  Number of synaptic contacts on node 39: 187978 
+  Number of connections on node 61: 27654 
+  Number of synaptic contacts on node 61: 192880 
+  Number of connections on node 12: 26780 
+  Number of synaptic contacts on node 12: 188070 
+  Number of connections on node 62: 27808 
+  Number of synaptic contacts on node 62: 188464 
+  Number of connections on node 65: 28004 
+  Number of synaptic contacts on node 65: 188234 
+  Number of connections on node 48: 27534 
+  Number of synaptic contacts on node 48: 185815 
+  Number of connections on node 13: 27624 
+  Number of synaptic contacts on node 13: 188202 
+  Number of connections on node 71: 27956 
+  Number of synaptic contacts on node 71: 186401 
+  Number of connections on node 38: 27540 
+  Number of synaptic contacts on node 38: 184660 
+  Number of connections on node 70: 27702 
+  Number of synaptic contacts on node 70: 189062 
+  Number of connections on node 25: 27862 
+  Number of synaptic contacts on node 25: 187395 
+  Number of connections on node 6: 27618 
+  Number of synaptic contacts on node 6: 186288 
+  Number of connections on node 67: 27737 
+  Number of synaptic contacts on node 67: 185717 
+  Number of connections on node 72: 26137 
+  Number of synaptic contacts on node 72: 184040 
+  Done; cell connection time = 1565.93 s.
+Adding stims...
+  Number of stims on node 7: 1008 
+  Number of stims on node 51: 999 
+  Number of stims on node 52: 999 
+  Number of stims on node 15: 1008 
+  Number of stims on node 2: 1009 
+  Number of stims on node 58: 999 
+  Number of stims on node 43: 999 
+  Number of stims on node 14: 1008 
+  Number of stims on node 24: 998 
+  Number of stims on node 75: 999 
+  Number of stims on node 34: 999 
+  Number of stims on node 57: 999 
+  Number of stims on node 5: 1008 
+  Number of stims on node 66: 999 
+  Number of stims on node 28: 999 
+  Number of stims on node 18: 1008 
+  Number of stims on node 10: 1008 
+  Number of stims on node 3: 1008 
+  Number of stims on node 1: 1009 
+  Number of stims on node 67: 999 
+  Number of stims on node 29: 999 
+  Number of stims on node 64: 999 
+  Number of stims on node 16: 1008 
+  Number of stims on node 74: 999 
+  Number of stims on node 35: 999 
+  Number of stims on node 8: 1008 
+  Number of stims on node 53: 999 
+  Number of stims on node 54: 999 
+  Number of stims on node 49: 999 
+  Number of stims on node 22: 998 
+  Number of stims on node 37: 999 
+  Number of stims on node 50: 999 
+  Number of stims on node 0: 1009 
+  Number of stims on node 56: 999 
+  Number of stims on node 78: 999 
+  Number of stims on node 23: 998 
+  Number of stims on node 68: 999 
+  Number of stims on node 31: 999 
+  Number of stims on node 63: 999 
+  Number of stims on node 42: 999 
+  Number of stims on node 30: 999 
+  Number of stims on node 20: 998 
+  Number of stims on node 76: 999 
+  Number of stims on node 72: 999 
+  Number of stims on node 41: 999 
+  Number of stims on node 12: 1008 
+  Number of stims on node 39: 999 
+  Number of stims on node 79: 999 
+  Number of stims on node 61: 999 
+  Number of stims on node 21: 998 
+  Number of stims on node 38: 999 
+  Number of stims on node 48: 999 
+  Number of stims on node 17: 1008 
+  Number of stims on node 65: 999 
+  Number of stims on node 32: 999 
+  Number of stims on node 70: 999 
+  Number of stims on node 55: 999 
+  Number of stims on node 25: 998 
+  Number of stims on node 6: 1008 
+  Number of stims on node 13: 1008 
+  Number of stims on node 77: 999 
+  Number of stims on node 46: 999 
+  Number of stims on node 73: 999 
+  Number of stims on node 19: 998 
+  Number of stims on node 26: 998 
+  Number of stims on node 27: 998 
+  Number of stims on node 47: 999 
+  Number of stims on node 9: 1008 
+  Number of stims on node 62: 999 
+  Number of stims on node 4: 1008 
+  Number of stims on node 59: 999 
+  Number of stims on node 71: 999 
+  Number of stims on node 40: 999 
+  Number of stims on node 33: 999 
+  Number of stims on node 11: 1008 
+  Number of stims on node 69: 999 
+  Number of stims on node 60: 999 
+  Number of stims on node 44: 999 
+  Number of stims on node 36: 999 
+  Number of stims on node 45: 999 
+  Done; cell stims creation time = 3.95 s.
+Recording 8 traces of 1 types on node 58
+Recording 8 traces of 1 types on node 57
+Recording 11 traces of 1 types on node 7
+Recording 9 traces of 1 types on node 43
+Recording 10 traces of 1 types on node 5
+Recording 7 traces of 1 types on node 68
+Recording 12 traces of 1 types on node 52
+Recording 7 traces of 1 types on node 24
+Recording 10 traces of 1 types on node 2
+Recording 10 traces of 1 types on node 3
+Recording 8 traces of 1 types on node 64
+Recording 9 traces of 1 types on node 72
+Recording 7 traces of 1 types on node 66
+Recording 11 traces of 1 types on node 54
+Recording 7 traces of 1 types on node 29
+Recording 7 traces of 1 types on node 0
+Recording 10 traces of 1 types on node 78
+Recording 10 traces of 1 types on node 37
+Recording 9 traces of 1 types on node 1
+Recording 12 traces of 1 types on node 51
+Recording 11 traces of 1 types on node 35
+Recording 5 traces of 1 types on node 15
+Recording 7 traces of 1 types on node 63
+Recording 10 traces of 1 types on node 10
+Recording 9 traces of 1 types on node 74
+Recording 7 traces of 1 types on node 18
+Recording 7 traces of 1 types on node 31
+Recording 9 traces of 1 types on node 8
+Recording 8 traces of 1 types on node 22
+Recording 9 traces of 1 types on node 42
+Recording 10 traces of 1 types on node 49
+Recording 11 traces of 1 types on node 50
+Recording 8 traces of 1 types on node 67
+Recording 11 traces of 1 types on node 56
+Recording 7 traces of 1 types on node 23
+Recording 7 traces of 1 types on node 28
+Recording 10 traces of 1 types on node 34
+Recording 10 traces of 1 types on node 75
+Recording 12 traces of 1 types on node 53
+Recording 5 traces of 1 types on node 14
+Recording 6 traces of 1 types on node 79
+Recording 5 traces of 1 types on node 16
+Recording 12 traces of 1 types on node 4
+Recording 7 traces of 1 types on node 30
+Recording 7 traces of 1 types on node 19
+Recording 7 traces of 1 types on node 65
+Recording 9 traces of 1 types on node 12
+Recording 7 traces of 1 types on node 27
+Recording 9 traces of 1 types on node 41
+Recording 11 traces of 1 types on node 48
+Recording 8 traces of 1 types on node 77
+Recording 7 traces of 1 types on node 17
+Recording 9 traces of 1 types on node 11
+Recording 10 traces of 1 types on node 45
+Recording 10 traces of 1 types on node 13
+Recording 10 traces of 1 types on node 6
+Recording 8 traces of 1 types on node 70
+Recording 7 traces of 1 types on node 69
+Recording 10 traces of 1 types on node 44
+Recording 10 traces of 1 types on node 62
+Recording 12 traces of 1 types on node 38
+Recording 10 traces of 1 types on node 61
+Recording 9 traces of 1 types on node 39
+Recording 12 traces of 1 types on node 55
+Recording 6 traces of 1 types on node 26
+Recording 9 traces of 1 types on node 60
+Recording 7 traces of 1 types on node 25
+Recording 9 traces of 1 types on node 33
+Recording 7 traces of 1 types on node 59
+Recording 7 traces of 1 types on node 21
+Recording 13 traces of 1 types on node 47
+Recording 9 traces of 1 types on node 73
+Recording 8 traces of 1 types on node 76
+Recording 9 traces of 1 types on node 71
+Recording 7 traces of 1 types on node 32
+Recording 9 traces of 1 types on node 40
+Recording 8 traces of 1 types on node 20
+Recording 10 traces of 1 types on node 46
+Recording 10 traces of 1 types on node 36
+Recording 10 traces of 1 types on node 9
+0.0s
+
+Running simulation for 7000.0 ms...
+0.1s
+0.2s
+0.3s
+0.4s
+0.5s
+0.6s
+0.7s
+0.8s
+0.9s
+1.0s
+1.1s
+1.2s
+1.3s
+1.4s
+1.5s
+1.6s
+1.7s
+1.8s
+1.9s
+2.0s
+2.1s
+2.2s
+2.3s
+2.4s
+2.5s
+2.6s
+2.7s
+2.8s
+2.9s
+3.0s
+3.1s
+3.2s
+3.3s
+3.4s
+3.5s
+3.6s
+3.7s
+3.8s
+3.9s
+4.0s
+4.1s
+4.2s
+4.3s
+4.4s
+4.5s
+4.6s
+4.7s
+4.8s
+4.9s
+5.0s
+5.1s
+5.2s
+5.3s
+5.4s
+5.5s
+5.6s
+5.7s
+5.8s
+5.9s
+6.0s
+6.1s
+6.2s
+6.3s
+6.4s
+6.5s
+6.6s
+6.7s
+6.8s
+6.9s
+  Done; run time = 37304.40 s; real-time ratio: 0.00.
+
+Gathering data...
+  Done; gather time = 12.46 s.
+
+Analyzing...
+  Cells: 11568
+  Connections: 0 (0.00 per cell)
+  Spikes: 641545 (7.92 Hz)
+  Simulated time: 7.0 s; 80 workers
+  Run time: 37304.40 s
+   L1_DAC : 2.048 Hz
+   L1_DLAC : 1.636 Hz
+   L1_HAC : 2.890 Hz
+   L1_NGC-DA : 4.155 Hz
+   L1_NGC-SA : 3.161 Hz
+   L1_SLAC : 5.486 Hz
+   L23_BP : 9.679 Hz
+   L23_BTC : 3.747 Hz
+   L23_ChC : 3.009 Hz
+   L23_DBC : 5.492 Hz
+   L23_LBC : 2.135 Hz
+   L23_MC : 3.566 Hz
+   L23_NBC : 1.875 Hz
+   L23_NGC : 1.110 Hz
+   L23_PC : 0.798 Hz
+   L23_SBC : 3.718 Hz
+   L4_BP : 10.071 Hz
+   L4_BTC : 3.393 Hz
+   L4_ChC : 1.619 Hz
+   L4_DBC : 2.416 Hz
+   L4_LBC : 1.907 Hz
+   L4_MC : 3.118 Hz
+   L4_NBC : 1.923 Hz
+   L4_NGC : 2.071 Hz
+   L4_PC : 4.535 Hz
+   L4_SBC : 4.373 Hz
+   L4_SP : 5.273 Hz
+   L4_SS : 4.318 Hz
+   L5_BP : 7.482 Hz
+   L5_BTC : 4.714 Hz
+   L5_ChC : 3.686 Hz
+   L5_DBC : 3.024 Hz
+   L5_LBC : 2.108 Hz
+   L5_MC : 3.470 Hz
+   L5_NBC : 5.316 Hz
+   L5_NGC : 5.286 Hz
+   L5_SBC : 5.476 Hz
+   L5_STPC : 3.666 Hz
+   L5_TTPC1 : 4.043 Hz
+   L5_TTPC2 : 4.039 Hz
+   L5_UTPC : 5.415 Hz
+   L6_BPC : 6.275 Hz
+   L6_BP : 5.561 Hz
+   L6_BTC : 3.909 Hz
+   L6_ChC : 2.476 Hz
+   L6_DBC : 2.786 Hz
+   L6_IPC : 8.456 Hz
+   L6_LBC : 4.869 Hz
+   L6_MC : 3.163 Hz
+   L6_NBC : 3.755 Hz
+   L6_NGC : 1.543 Hz
+   L6_SBC : 4.439 Hz
+   L6_TPC_L1 : 5.794 Hz
+   L6_TPC_L4 : 7.970 Hz
+   L6_UTPC : 7.225 Hz
+   ss_RTN_o : 20.567 Hz
+   ss_RTN_m : 19.743 Hz
+   ss_RTN_i : 20.963 Hz
+   VPL_sTC : 10.711 Hz
+   VPM_sTC : 10.088 Hz
+   POm_sTC_s1 : 14.024 Hz
+Saving output as ../data/v1_batch5/v1_batch5_1_2.json  ... 
+Finished saving!
+  Done; saving time = 96.88 s.
+Plotting raster...
+  Done; plotting time = 503.25 s
+
+Total time = 39544.94 s
+
+End time:  2021-06-29 15:08:18.042977
