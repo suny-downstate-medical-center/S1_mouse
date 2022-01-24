@@ -13,6 +13,18 @@ Updates:
 2014 December (Marianne Bezaire): documented
 ENDCOMMENT
 
+NEURON {
+	SUFFIX ch_KvCaB
+	USEION k READ ek WRITE ik
+	USEION ca READ cai VALENCE 2
+	:USEION nca READ ncai VALENCE 2
+	:USEION lca READ lcai VALENCE 2
+	:USEION tca READ tcai VALENCE 2
+	RANGE gmax, g, ik
+	RANGE myi
+	RANGE oinf, otau	: these two are not thread safe
+    THREADSAFE
+}
 
 VERBATIM
 #include <stdlib.h> /* 	Include this library so that the following
@@ -30,19 +42,6 @@ UNITS {
 	(mV) =	(millivolt)
 	(mA) =	(milliamp)
 	(mM) =	(millimolar)
-}
-
-NEURON {
-	SUFFIX ch_KvCaB
-	USEION k READ ek WRITE ik
-	USEION ca READ cai VALENCE 2
-	:USEION nca READ ncai VALENCE 2
-	:USEION lca READ lcai VALENCE 2
-	:USEION tca READ tcai VALENCE 2
-	RANGE gmax, g, ik
-	RANGE myi
-	GLOBAL oinf, otau	: these two are not thread safe
-    THREADSAFE
 }
 
 UNITS {

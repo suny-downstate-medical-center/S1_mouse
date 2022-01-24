@@ -16,7 +16,12 @@ Updates:
 2014 December (Marianne Bezaire): documented
 ENDCOMMENT
 
-
+NEURON {
+	SUFFIX iconc_Ca
+	USEION ca READ cai, ica, eca WRITE eca, cai VALENCE 2
+	RANGE caiinf, catau, cai, eca
+	THREADSAFE
+}
 
 VERBATIM
 #include <stdlib.h> /* 	Include this library so that the following
@@ -25,13 +30,6 @@ VERBATIM
 						 warning: incompatible implicit declaration of 
 						          built-in function 'free'  */
 ENDVERBATIM
-
-NEURON {
-SUFFIX iconc_Ca
-USEION ca READ cai, ica, eca WRITE eca, cai VALENCE 2
-RANGE caiinf, catau, cai, eca
-THREADSAFE
-}
 
 UNITS {
 	(mV) = (millivolt)

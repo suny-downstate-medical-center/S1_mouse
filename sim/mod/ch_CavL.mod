@@ -14,6 +14,14 @@ Updates:
 2014 December (Marianne Bezaire): documented
 ENDCOMMENT
 
+NEURON {
+	SUFFIX ch_CavL
+	USEION ca READ cai, cao, eca WRITE ica VALENCE 2 
+    RANGE gmax, cai, ica, eca
+ 	RANGE myi, g
+    RANGE minf,mtau	: neither of these are thread safe
+    THREADSAFE
+}
 
 VERBATIM
 #include <stdlib.h> /* 	Include this library so that the following
@@ -43,16 +51,6 @@ PARAMETER {
         tfa=1
 }
 
-
-NEURON {
-	SUFFIX ch_CavL
-	USEION ca READ cai, cao, eca WRITE ica VALENCE 2 
-    RANGE gmax, cai, ica, eca
- 	RANGE myi, g
-    GLOBAL minf,mtau	: neither of these are thread safe
-    THREADSAFE
-}
-
 STATE {
 	m
 }
@@ -71,7 +69,7 @@ INITIAL {
 	rate(v)
 	m = minf
 	VERBATIM
-	cai=_ion_cai;
+	//cai=_ion_cai;
 	ENDVERBATIM
 }
 
@@ -128,9 +126,4 @@ PROCEDURE rate(v (mV)) { :callable from hoc
 	mtau = 1/(tfa*(a + bet(v)))
 	minf = tfa*a*mtau
 }
-
-
-
-
-
 

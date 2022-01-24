@@ -13,6 +13,15 @@ Updates:
 2014 December (Marianne Bezaire): documented
 ENDCOMMENT
 
+NEURON {
+	SUFFIX ch_KvAngf
+	USEION k READ ek WRITE ik
+	RANGE gmax, g, ik
+	RANGE myi
+	RANGE a0l, a0n, zetan, zetal, gmn, gml
+	RANGE ninf, linf, taul, taun : note that these four are not thread safe
+	THREADSAFE
+}
 
 VERBATIM
 #include <stdlib.h> /* 	Include this library so that the following
@@ -40,17 +49,6 @@ PARAMETER {
 	zetal=4 (1)
 	gmn=0.6 (1)
 	gml=1 (1)
-}
-
-
-NEURON {
-	SUFFIX ch_KvAngf
-	USEION k READ ek WRITE ik
-	RANGE gmax, g, ik
-	RANGE myi
-	RANGE a0l, a0n, zetan, zetal, gmn, gml
-	GLOBAL ninf, linf, taul, taun : note that these four are not thread safe
-	THREADSAFE
 }
 
 STATE {
@@ -115,10 +113,4 @@ PROCEDURE rates(v (mV)) { :callable from hoc
 	linf = 1/(1+a)
 	taul = betl(v)/(q10*a0l*(1 + a))
 }
-
-
-
-
-
-
 

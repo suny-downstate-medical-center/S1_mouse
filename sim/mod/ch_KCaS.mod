@@ -9,6 +9,14 @@ Updates:
 2014 December (Marianne Bezaire): documented
 ENDCOMMENT
 
+NEURON {
+	SUFFIX ch_KCaS
+	USEION k READ ek WRITE ik VALENCE 1
+	USEION ca READ cai VALENCE 2
+	RANGE g, gmax, qinf, qtau, ik
+	RANGE myi
+    THREADSAFE
+}
 
 VERBATIM
 #include <stdlib.h> /* 	Include this library so that the following
@@ -23,15 +31,6 @@ UNITS {
         (mM)    = (millimolar)
 	(mA)	= (milliamp)
 	(mV)	= (millivolt)
-}
-
-NEURON {
-	SUFFIX ch_KCaS
-	USEION k READ ek WRITE ik VALENCE 1
-	USEION ca READ cai VALENCE 2
-	RANGE g, gmax, qinf, qtau, ik
-	RANGE myi
-    THREADSAFE
 }
 
 INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
@@ -92,9 +91,4 @@ beta = 0.00025
 }
 
 UNITSON
-
-
-
-
-
 

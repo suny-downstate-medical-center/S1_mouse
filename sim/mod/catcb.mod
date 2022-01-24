@@ -8,7 +8,7 @@ NEURON {
 	USEION ca READ cai, eca    
         RANGE gcatbar, iCa
         RANGE gcatbar, ica
-	GLOBAL hinf, minf
+	RANGE hinf, minf
 }
 
 UNITS {
@@ -38,8 +38,8 @@ ASSIGNED {     : parameters needed to solve DE
 	ica          (mA/cm2)
 	cai          (mM)       
 	eca          (mV)       
-        minf
-        hinf
+    minf
+    hinf
 }
 
 

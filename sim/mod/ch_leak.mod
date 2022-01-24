@@ -13,6 +13,13 @@ Updates:
 2014 December (Marianne Bezaire): documented
 ENDCOMMENT
 
+NEURON { 
+	SUFFIX ch_leak 
+	NONSPECIFIC_CURRENT i
+	RANGE gmax, e, i
+	RANGE myi, g
+    THREADSAFE
+}
 
 VERBATIM
 #include <stdlib.h> /* 	Include this library so that the following
@@ -25,14 +32,6 @@ ENDVERBATIM
 UNITS {
 	(mA) =(milliamp)
 	(mV) =(millivolt)
-}
- 
-NEURON { 
-	SUFFIX ch_leak 
-	NONSPECIFIC_CURRENT i
-	RANGE gmax, e, i
-	RANGE myi, g
-    THREADSAFE
 }
  
 PARAMETER {
@@ -54,9 +53,4 @@ BREAKPOINT {
 	i = g*(v-e)	: solve for the current (at each dt)
 	myi = i
 }
-
-
-
-
-
 

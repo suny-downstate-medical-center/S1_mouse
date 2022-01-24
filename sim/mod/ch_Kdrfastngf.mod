@@ -13,7 +13,14 @@ Updates:
 2014 December (Marianne Bezaire): documented
 ? ? (Aradi): shifted the voltage dependence by 16 mV
 ENDCOMMENT
-
+ 
+NEURON { 
+	SUFFIX ch_Kdrfastngf
+	USEION k READ ek WRITE ik VALENCE 1
+	RANGE g, gmax, ninf, ntau, ik
+	RANGE myi, offset5, offset6, slope5, slope6
+	THREADSAFE
+}
 
 VERBATIM
 #include <stdlib.h> /* 	Include this library so that the following
@@ -33,14 +40,6 @@ UNITS {
 	(um) = (micron)
 	FARADAY = 96520 (coul)
 	R = 8.3134	(joule/degC)
-}
- 
-NEURON { 
-	SUFFIX ch_Kdrfastngf
-	USEION k READ ek WRITE ik VALENCE 1
-	RANGE g, gmax, ninf, ntau, ik
-	RANGE myi, offset5, offset6, slope5, slope6
-	THREADSAFE
 }
  
 PARAMETER {
@@ -132,10 +131,4 @@ FUNCTION vtrap(x,y) {  :Traps for 0 in denominator of rate eqns.
 }
  
 UNITSON
-
-
-
-
-
-
 

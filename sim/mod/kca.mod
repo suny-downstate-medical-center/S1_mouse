@@ -59,7 +59,8 @@ NEURON {
 	RANGE n, gk, gbar
 	RANGE ninf, ntau
 	GLOBAL Ra, Rb, caix
-	GLOBAL q10, temp, tadj, vmin, vmax
+	GLOBAL q10, temp, vmin, vmax
+	RANGE tadj
 }
 
 UNITS {
@@ -137,9 +138,4 @@ PROCEDURE rates(cai(mM)) {
 :        tinc = -dt * tadj
 :        nexp = 1 - exp(tinc/ntau)
 }
-
-
-
-
-
 

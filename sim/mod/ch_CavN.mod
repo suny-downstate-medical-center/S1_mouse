@@ -13,6 +13,16 @@ Updates:
 2014 December (Marianne Bezaire): documented
 ENDCOMMENT
 
+NEURON {
+	SUFFIX ch_CavN				: The name of the mechanism
+	USEION ca READ eca WRITE ica VALENCE 2 
+	RANGE g
+	RANGE gmax
+	RANGE cinf, ctau, dinf, dtau
+	RANGE myi
+	THREADSAFE
+}
+
 VERBATIM
 #include <stdlib.h> /* 	Include this library so that the following
 						(innocuous) warning does not appear:
@@ -28,17 +38,6 @@ UNITS {
 	(mM) = (millimolar)
 	FARADAY = 96520 (coul)
 	R = 8.3134	(joule/degC)
-}
- 
- 
-NEURON {
-	SUFFIX ch_CavN				: The name of the mechanism
-	USEION ca READ eca WRITE ica VALENCE 2 
-	RANGE g
-	RANGE gmax
-	RANGE cinf, ctau, dinf, dtau
-	RANGE myi
-	THREADSAFE
 }
  
 INDEPENDENT {t FROM 0 TO 100 WITH 100 (ms)}
@@ -136,10 +135,4 @@ FUNCTION vtrap(x,y) {  :Traps for 0 in denominator of rate eqns.
 }
 
 UNITSON
-
-
-
-
-
-
 
