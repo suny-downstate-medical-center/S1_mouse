@@ -48,9 +48,12 @@ netParams.shape = 'cylinder' # cylindrical (column-like) volume
 # All     1378.8 um
 
 cellModels = ['HH_full']
+
 Epops = ['L23_PC', 'L4_PC', 'L4_SS', 'L4_SP', 
              'L5_TTPC1', 'L5_TTPC2', 'L5_STPC', 'L5_UTPC',
              'L6_TPC_L1', 'L6_TPC_L4', 'L6_BPC', 'L6_IPC', 'L6_UTPC']
+             
+Epops = ['L6_TPC_L1', 'L6_TPC_L4', 'L6_BPC', 'L6_IPC', 'L6_UTPC']
 Ipops = []
 for popName in cfg.S1pops:
     if popName not in Epops:
@@ -83,7 +86,7 @@ for cellName in cfg.S1cells:
 	else:
 		netParams.popParams[cellName] = {'cellType': cellName, 'cellModel': 'HH_full', 'ynormRange': layer[layernumber], 
                                         'numCells': int(np.ceil(cfg.scaleDensity*cfg.cellNumber[cellName])), 'diversity': True}
-
+print(cfg.popNumber)
 ## THALAMIC POPULATIONS (from prev model)
 for popName in cfg.thalamicpops:
     if 'RTN' in popName: # inhibitory - RTN
@@ -772,7 +775,7 @@ if cfg.connect_S1_Th:
     pops_FO     = ['VPL_sTC','VPM_sTC']
     pops_HO     = ['POm_sTC_s1'],
 
-    pops_CT     = ['L5_TTPC2', 'L6_TPC_L4']
+    pops_CT     = ['L6_TPC_L4']
 
     radius2D_S1_RTN = 50.0
     radius2D_S1_TC = 50.0

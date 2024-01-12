@@ -26,7 +26,7 @@ cfg.coreneuron = False
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 5.0*1e1 ## Duration of the sim, in ms  
+cfg.duration = 5.0*1e2 ## Duration of the sim, in ms  
 cfg.dt = 0.025
 cfg.seeds = {'conn': 4322, 'stim': 4322, 'loc': 4322} 
 cfg.hParams = {'celsius': 34, 'v_init': -65}  
@@ -60,7 +60,7 @@ cfg.reducedtest = False
 # Load 207 Morpho-electrical Names used to import the cells from 'cell_data/' -> L1:14 L23:43 L4:46 L5:52 L6:52
 # Create [Morphological,Electrical] = number of cell metype in the sub-pop
 
-with open('../info/anatomy/S1-cells-distributions-Mouse.txt') as mtype_file:
+with open('../info/anatomy/S1-cells-distributions-Mouse-L6.txt') as mtype_file:
     mtype_content = mtype_file.read()       
 
 cfg.popNumber = {}
@@ -88,20 +88,20 @@ for line in mtype_content.split('\n')[:-1]:
     
     cellParam.append(mtype + '_' + etype[0:3])
     
-cfg.S1pops = popParam[0:55]
-cfg.S1cells = cellParam[0:207]
+cfg.S1pops = popParam[0:14]
+cfg.S1cells = cellParam[0:52]
 
 #------------------------------------------------------------------------------  
 # Thalamic Cells
 
 cfg.thalamicpops = ['ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i', 'VPL_sTC', 'VPM_sTC', 'POm_sTC_s1']
 
-cfg.cellNumber['ss_RTN_o'] = 382
-cfg.cellNumber['ss_RTN_m'] = 382
-cfg.cellNumber['ss_RTN_i'] = 765
-cfg.cellNumber['VPL_sTC'] = 656
-cfg.cellNumber['VPM_sTC'] = 839
-cfg.cellNumber['POm_sTC_s1'] = 685
+cfg.cellNumber['ss_RTN_o'] = 382*0.1
+cfg.cellNumber['ss_RTN_m'] = 382*0.1
+cfg.cellNumber['ss_RTN_i'] = 765*0.1
+cfg.cellNumber['VPL_sTC'] = 656*0.1
+cfg.cellNumber['VPM_sTC'] = 839*0.1
+cfg.cellNumber['POm_sTC_s1'] = 685*0.1
 
 for mtype in cfg.thalamicpops: # No diversity
 	metype = mtype
@@ -179,7 +179,7 @@ cfg.scale = 1.0 # reduce size
 cfg.sizeY = 1378.8
 cfg.sizeX = 300.0 # r = 150 um 
 cfg.sizeZ = 300.0
-cfg.scaleDensity = 1.0 # Number of cells = 7859
+cfg.scaleDensity = 0.1 # Number of cells = 7859
 
 #------------------------------------------------------------------------------
 # Spontaneous synapses + background - data from Rat
