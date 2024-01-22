@@ -20,13 +20,13 @@ cfg = specs.SimConfig()
 #
 #------------------------------------------------------------------------------
 
-cfg.simType='gridTHS1'
+cfg.simType='gridTHL6A'
 cfg.coreneuron = False
 
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 25.0*1e2 ## Duration of the sim, in ms  
+cfg.duration = 15.0*1e2 ## Duration of the sim, in ms  
 cfg.dt = 0.05
 cfg.seeds = {'conn': 4322, 'stim': 4322, 'loc': 4322} 
 cfg.hParams = {'celsius': 34, 'v_init': -75}  
@@ -153,7 +153,7 @@ cfg.saveCellConns = False
 # ------------------------------------------------------------------------------
 cfg.analysis['plotRaster'] = {'include': cfg.allpops, 'saveFig': True, 'showFig': False, 'orderInverse': True, 'timeRange': [0,cfg.duration], 'figSize': (12,8), 'dpi': 300} 
 # cfg.analysis['plot2Dnet']   = {'include': cfg.allpops, 'saveFig': True, 'showConns': False, 'figSize': (24,24), 'fontSize':16}   # Plot 2D cells xy
-cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'ylim': [-90,-20], 'saveFig': True, 'showFig': False, 'figSize':(12,8)}
+cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', 'overlay': True, 'timeRange': [0,cfg.duration], 'saveFig': True, 'showFig': False, 'figSize':(12,4)} #, 'ylim': [-90,-20]
 # cfg.analysis['plot2Dfiring']={'saveFig': True, 'figSize': (24,24), 'fontSize':16}
 # cfg.analysis['plotConn'] = {'includePre': cfg.allpops, 'includePost': cfg.allpops, 'feature': 'numConns', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'saveData':'../data/v5_batch0/v5_batch0_matrix_numConn.json', 'fontSize': 18}
 # cfg.analysis['plotConn'] = {'includePre': ['L1_DAC_cNA','L23_MC_cAC','L4_SS_cAD','L4_NBC_cNA','L5_TTPC2_cAD', 'L5_LBC_cNA', 'L6_TPC_L4_cAD', 'L6_LBC_cNA', 'ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i', 'VPL_sTC', 'VPM_sTC', 'POm_sTC_s1'], 'includePost': ['L1_DAC_cNA','L23_MC_cAC','L4_SS_cAD','L4_NBC_cNA','L5_TTPC2_cAD', 'L5_LBC_cNA', 'L6_TPC_L4_cAD', 'L6_LBC_cNA', 'ss_RTN_o', 'ss_RTN_m', 'ss_RTN_i', 'VPL_sTC', 'VPM_sTC', 'POm_sTC_s1'], 'feature': 'convergence', 'groupBy': 'pop', 'figSize': (24,24), 'saveFig': True, 'orderBy': 'gid', 'graphType': 'matrix', 'fontSize': 18}
@@ -168,14 +168,14 @@ cfg.scale = 1.0 # reduce size
 cfg.sizeY = 1378.8
 cfg.sizeX = 300.0 # r = 150 um 
 cfg.sizeZ = 300.0
-cfg.scaleDensity = 0.05 # Number of cells L16 = 7859
+cfg.scaleDensity = 1.0 # Number of cells L16 = 7859
 
 #------------------------------------------------------------------------------
 # Spontaneous synapses + background - data from Rat
 #------------------------------------------------------------------------------
 cfg.addStimSynS1 = True
-cfg.rateStimE = 9.0
-cfg.rateStimI = 9.0
+cfg.rateStimE = 10.0
+cfg.rateStimI = 10.0
 
 #------------------------------------------------------------------------------
 # Connectivity
@@ -184,41 +184,16 @@ cfg.rateStimI = 9.0
 cfg.addConn = True
 
 #------------------------------------------------------------------------------
-## Th->Th 
-cfg.connectTh = True
-
-#------------------------------------------------------------------------------
-# Gentet and Ulrich (2004) corticoreticular EPSPs = 2.4 ± 0.1 mV
-# 						   thalamoreticular EPSPs = 7.4 ± 1.5 mV
-# They are strong compared with EPSPs recorded in relay cells from corticothalamic activation (Golshani et al. 2001; Liu et al. 2008).
-# 						   corticothalamic < 2.4 ± 0.1 mV
-#------------------------------------------------------------------------------
-## Th->S1
-cfg.connect_Th_S1 = True
-
-cfg.frac_Th_S1 = 1.0
-#------------------------------------------------------------------------------
-## S1->Th 
-cfg.connect_S1_Th = True
-
-cfg.connect_S1_RTN = True
-cfg.convergence_S1_RTN         = 30.0  # dist_2D<R
-cfg.connWeight_S1_RTN       = 0.500
-
-cfg.connect_S1_TC = True
-cfg.convergence_S1_TC         = 30.0  # dist_2D<R
-cfg.connWeight_S1_TC       = 0.250
-
-#------------------------------------------------------------------------------
 # Current inputs 
 #------------------------------------------------------------------------------
-cfg.addIClamp = False  # decrease the transient
+cfg.addIClamp = True  # decrease the transient
  
-# cfg.IClamp = []
-# cfg.IClampnumber = 0
+cfg.IClamp = []
+cfg.IClampnumber = 0
 
-# cfg.thalamocorticalconnections =  ['VPM_sTC']
-# for popName in cfg.thalamocorticalconnections:
-#     cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 0, 'dur': 5, 'amp': 2.0+10.0*cfg.IClampnumber}) #pA
-#     cfg.IClampnumber=cfg.IClampnumber+1
+cfg.thalamocorticalconnections =  ['VPM_sTC']
+
+for popName in ['L6_TPC_L4_cAD']: #cfg.allpops:
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 500, 'dur': 500, 'amp': 0.4}) #pA
+    cfg.IClampnumber=cfg.IClampnumber+1
     

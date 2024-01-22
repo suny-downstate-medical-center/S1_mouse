@@ -497,7 +497,7 @@ if cfg.addStimSynS1:
                     'synMech': 'AMPA', 
                     'conds': {'cellType': cfg.S1cells}, 
                     'sec': 'spiny', 
-                    'weight': 0.01,
+                    'weight': 0.005,
                     'delay': 0.1}
 
         netParams.stimTargetParams['StimSynS1_T_all_INH_' + str(qSnum)] = {
@@ -505,7 +505,7 @@ if cfg.addStimSynS1:
                     'conds': {'cellType': cfg.S1cells}, 
                     'synMech': 'GABAA', 
                     'sec': 'spiny', 
-                    'weight': 0.04,
+                    'weight': 0.02,
                     'delay': 0.1}
 
     # print(netParams.stimTargetParams)
