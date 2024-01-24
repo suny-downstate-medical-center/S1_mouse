@@ -17,8 +17,8 @@ def custom():
     
     # params[('seeds', 'conn')] =  [1234]
 
-    params[('rateStimI')] = [10.0]
-    params[('rateStimE')] = [10.0]
+    params[('rateStimI')] = [20.0]
+    params[('rateStimE')] = [20.0]
 
     b = Batch(params=params, netParamsFile='netParams.py', cfgFile='cfg.py')
 
@@ -56,6 +56,20 @@ def setRunCfg(b, type='mpi_bulletin'):
             'script': 'init.py', 
             'mpiCommand': 'mpirun',
             'skipCustom': '_raster.png'}
+
+    elif type == 'hpc_slurm_Expanse':
+        b.runCfg = {'type': 'hpc_slurm',
+                    'allocation': 'TG-IBN140002',
+                    'partition': 'compute',
+                    'walltime': '1:00:00',
+                    'nodes': 1,
+                    'coresPerNode': 128,
+                    'email': 'fernandodasilvaborges@gmail.com',
+                    'folder': '/home/fborges/S1_mouse/sim/',
+                    'script': 'init.py',
+                    'mpiCommand': 'mpirun',
+                    'custom': '#SBATCH --mem=249325M\n#SBATCH --export=ALL\n#SBATCH --partition=compute',
+                    'skip': True}
 
 # ----------------------------------------------------------------------------------------------
 # Main code

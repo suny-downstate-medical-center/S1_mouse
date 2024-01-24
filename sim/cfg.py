@@ -26,7 +26,7 @@ cfg.coreneuron = False
 #------------------------------------------------------------------------------
 # Run parameters
 #------------------------------------------------------------------------------
-cfg.duration = 15.0*1e2 ## Duration of the sim, in ms  
+cfg.duration = 5.0*1e3 ## Duration of the sim, in ms  
 cfg.dt = 0.05
 cfg.seeds = {'conn': 4322, 'stim': 4322, 'loc': 4322} 
 cfg.hParams = {'celsius': 34, 'v_init': -75}  
@@ -166,8 +166,8 @@ cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', '
 #------------------------------------------------------------------------------
 cfg.scale = 1.0 # reduce size
 cfg.sizeY = 1378.8
-cfg.sizeX = 300.0 # r = 150 um 
-cfg.sizeZ = 300.0
+cfg.sizeX = 280.0 # r = 140 um 
+cfg.sizeZ = 280.0
 cfg.scaleDensity = 1.0 # Number of cells L16 = 7859
 
 #------------------------------------------------------------------------------
@@ -194,6 +194,10 @@ cfg.IClampnumber = 0
 cfg.thalamocorticalconnections =  ['VPM_sTC']
 
 for popName in ['L6_TPC_L4_cAD']: #cfg.allpops:
-    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 500, 'dur': 500, 'amp': 0.4}) #pA
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 1000, 'dur': 100, 'amp': 0.4}) #pA
+    cfg.IClampnumber=cfg.IClampnumber+1
+    
+for popName in ['L6_TPC_L4_cAD']: #cfg.allpops:
+    cfg.IClamp.append({'pop': popName, 'sec': 'soma', 'loc': 0.5, 'start': 3000, 'dur': 500, 'amp': 0.4}) #pA
     cfg.IClampnumber=cfg.IClampnumber+1
     
