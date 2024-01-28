@@ -166,8 +166,8 @@ cfg.analysis['plotTraces'] = {'include': cfg.recordCells, 'oneFigPer': 'cell', '
 #------------------------------------------------------------------------------
 cfg.scale = 1.0 # reduce size
 cfg.sizeY = 1378.8
-cfg.sizeX = 280.0 # r = 140 um 
-cfg.sizeZ = 280.0
+cfg.sizeX = 350.0 # r = 140 um 
+cfg.sizeZ = 350.0
 cfg.scaleDensity = 1.0 # Number of cells L16 = 7859
 
 #------------------------------------------------------------------------------
